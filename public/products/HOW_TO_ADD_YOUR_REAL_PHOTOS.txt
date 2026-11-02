@@ -1,0 +1,11 @@
+PASTE YOUR PRODUCT PHOTOS HERE:
+Example:
+- crape_plane.jpg
+- georgette.jpg
+- chanderi.jpg
+- velvet.jpg
+- organza.jpg
+
+Then in src/data/products.js, simply change the 'image' property from the dummy SVG to:
+image: '/products/your_image_name.jpg'
+

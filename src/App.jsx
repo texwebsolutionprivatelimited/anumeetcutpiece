@@ -1,0 +1,308 @@
+import React, { useState, useEffect } from 'react';
+import { CheckCircle2, ShoppingBag } from 'lucide-react';
+import { STORE_CONFIG } from './data/products';
+import NoticeTicker from './components/NoticeTicker';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import FreeDeliveryBanner from './components/FreeDeliveryBanner';
+import StockDealsSection from './components/StockDealsSection';
+import ProductCatalog from './components/ProductCatalog';
+import WhyChooseUs from './components/WhyChooseUs';
+import Reviews from './components/Reviews';
+import Footer from './components/Footer';
+import ProductModal from './components/ProductModal';
+import CartDrawer from './components/CartDrawer';
+import WhatsAppSettingsModal from './components/WhatsAppSettingsModal';
+import StickyMobileBar from './components/StickyMobileBar';
+import WhatsAppIcon from './components/WhatsAppIcon';
+import { createGeneralInquiryWhatsAppLink } from './utils/whatsapp';
+
+export default function App() {
+  // Cart state persisted to localStorage
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem('anumeet_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  // Official Shop WhatsApp number: Real Bhopal Shop Phone 9131264893
+  const [whatsappPhone, setWhatsappPhone] = useState(STORE_CONFIG.phone);
+
+  // Clean up any stale dummy numbers from browser storage
+  useEffect(() => {
+    try {
+      localStorage.setItem('anumeet_whatsapp', STORE_CONFIG.phone);
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [directBuyItem, setDirectBuyItem] = useState(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All Fabrics');
+  const [toastMessage, setToastMessage] = useState(null);
+  const toastTimeoutRef = React.useRef(null);
+
+  const showToast = (msg) => {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    setToastMessage(msg);
+    toastTimeoutRef.current = setTimeout(() => {
+      setToastMessage(null);
+    }, 3200);
+  };
+
+  // Direct Buy Flow (1. Selected Item -> 2. User Details -> 3. Price -> WhatsApp -> Thank You)
+  const handleDirectBuy = (product) => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      subTitle: product.subTitle,
+      price: product.price || product.sellPrice,
+      mrp: product.mrp,
+      unit: product.unit || product.length || '5 mtr',
+      length: product.length || product.unit || '5 mtr',
+      image: product.image,
+      category: product.category,
+      quantity: product.quantity || 1,
+    };
+    setDirectBuyItem(item);
+    setIsCartOpen(true);
+  };
+
+  // Save cart changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('anumeet_cart', JSON.stringify(cart));
+    } catch (e) {
+      // ignore
+    }
+  }, [cart]);
+
+  // Query quantity of an item already in cart
+  const getItemQuantity = (id, length) => {
+    const item = cart.find(
+      (i) => i.id === id && (length ? i.length === length : true)
+    );
+    return item ? item.quantity : 0;
+  };
+
+  // Cart operations
+  const handleAddToCart = (product, openDrawer = false) => {
+    let finalQty = 1;
+    setCart((prev) => {
+      const targetLength = product.length || product.unit;
+      const existingIndex = prev.findIndex(
+        (item) => item.id === product.id && item.length === targetLength
+      );
+
+      const addQty = product.quantity || 1;
+
+      if (existingIndex > -1) {
+        const next = [...prev];
+        const newCount = next[existingIndex].quantity + addQty;
+        next[existingIndex] = {
+          ...next[existingIndex],
+          quantity: newCount,
+        };
+        finalQty = newCount;
+        return next;
+      } else {
+        finalQty = addQty;
+        return [...prev, { ...product, length: targetLength, quantity: addQty }];
+      }
+    });
+
+    showToast(`Added to Cart: ${product.name} (Qty: ${finalQty})`);
+
+    if (openDrawer) {
+      setIsCartOpen(true);
+    }
+  };
+
+  const handleUpdateQuantity = (id, length, newQty) => {
+    if (newQty <= 0) {
+      handleRemoveItem(id, length);
+      showToast('Item removed from cart');
+      return;
+    }
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id && (length ? item.length === length : true)
+          ? { ...item, quantity: newQty }
+          : item
+      )
+    );
+    showToast(`Cart updated • Qty: ${newQty}`);
+  };
+
+  const handleRemoveItem = (id, length) => {
+    setCart((prev) =>
+      prev.filter((item) => !(item.id === id && item.length === length))
+    );
+  };
+
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
+  const handleSavePhone = (newPhone) => {
+    setWhatsappPhone(newPhone);
+    try {
+      localStorage.setItem('anumeet_whatsapp', newPhone);
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCartPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const scrollToCatalog = () => {
+    const el = document.getElementById('catalog');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#faf7f2] text-[#1a2538] font-sans">
+      
+      {/* 1. Top Offer Ticker: ₹500 Free Delivery Rule */}
+      <NoticeTicker />
+
+      {/* 2. Responsive Header Navigation with User's Logo */}
+      <Navbar
+        cartCount={totalCartCount}
+        onOpenCart={() => setIsCartOpen(true)}
+        whatsappPhone={whatsappPhone}
+        onSelectCategory={(cat) => {
+          setSelectedCategory(cat);
+          scrollToCatalog();
+        }}
+      />
+
+      {/* 3. Luxury Light Hero Section with Interactive Fabric Deal Spotlight */}
+      <Hero
+        whatsappPhone={whatsappPhone}
+        onExploreClick={scrollToCatalog}
+        onAddToCart={handleAddToCart}
+      />
+
+      {/* 4. Interactive ₹500 Free Delivery Offer Banner */}
+      <FreeDeliveryBanner
+        cartTotal={totalCartPrice}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
+
+      {/* 5. Special Diwali Festive Deals (5m & 10m Cutpiece Lot) */}
+      <StockDealsSection
+        onAddToCart={handleAddToCart}
+        onDirectBuy={handleDirectBuy}
+        onUpdateQuantity={handleUpdateQuantity}
+        getItemQuantity={getItemQuantity}
+        onQuickView={(p) => setQuickViewProduct(p)}
+        whatsappPhone={whatsappPhone}
+      />
+
+      {/* 6. Main 20 Regular Products Catalog with Filters */}
+      <ProductCatalog
+        cart={cart}
+        onAddToCart={handleAddToCart}
+        onDirectBuy={handleDirectBuy}
+        onUpdateQuantity={handleUpdateQuantity}
+        getItemQuantity={getItemQuantity}
+        onQuickView={(p) => setQuickViewProduct(p)}
+        whatsappPhone={whatsappPhone}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+
+      {/* 7. Why Choose Us Section */}
+      <WhyChooseUs />
+
+      {/* 8. Customer Testimonials & Reviews */}
+      <Reviews />
+
+      {/* 9. Comprehensive Footer */}
+      <Footer whatsappPhone={whatsappPhone} />
+
+      {/* 10. Modals & Drawers */}
+      <ProductModal
+        product={quickViewProduct}
+        onClose={() => setQuickViewProduct(null)}
+        onAddToCart={handleAddToCart}
+        onDirectBuy={handleDirectBuy}
+        quantityInCart={quickViewProduct ? getItemQuantity(quickViewProduct.id, quickViewProduct.unit) : 0}
+        whatsappPhone={whatsappPhone}
+      />
+
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => {
+          setIsCartOpen(false);
+          setDirectBuyItem(null);
+        }}
+        cartItems={cart}
+        directBuyItem={directBuyItem}
+        onResetDirectBuy={() => setDirectBuyItem(null)}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onClearCart={handleClearCart}
+        whatsappPhone={whatsappPhone}
+      />
+
+      <WhatsAppSettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        currentPhone={whatsappPhone}
+        onSavePhone={handleSavePhone}
+      />
+
+      {/* 11. Sticky Mobile Action Bar (for 320px to 768px screens) */}
+      <StickyMobileBar
+        cartCount={totalCartCount}
+        cartTotal={totalCartPrice}
+        onOpenCart={() => setIsCartOpen(true)}
+        whatsappPhone={whatsappPhone}
+      />
+
+      {/* 12. Floating Cart Toast Notification Pill */}
+      {toastMessage && (
+        <div className="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#0b1b36] text-white border-2 border-[#c99738] px-3.5 sm:px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm animate-bounce">
+          <CheckCircle2 className="w-4 h-4 text-[#25d366] shrink-0" />
+          <span className="font-semibold text-white truncate max-w-[170px] sm:max-w-xs">
+            {toastMessage}
+          </span>
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="bg-[#c99738] hover:bg-[#dfb15b] active:scale-95 text-[#0b1b36] font-bold px-2.5 sm:px-3 py-1 rounded-full text-xs shadow-xs cursor-pointer shrink-0"
+          >
+            View Cart ({totalCartCount})
+          </button>
+        </div>
+      )}
+
+      {/* 13. Floating WhatsApp Button with User's Transparent PNG Icon (Desktop/Tablet) */}
+      <a
+        href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold p-3.5 rounded-full shadow-2xl transition-all duration-300 hover:shadow-green-500/40 group border-2 border-white/60"
+        title="Chat directly on WhatsApp"
+      >
+        <WhatsAppIcon className="w-7 h-7" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-1">
+          Chat with Us
+        </span>
+      </a>
+
+    </div>
+  );
+}
