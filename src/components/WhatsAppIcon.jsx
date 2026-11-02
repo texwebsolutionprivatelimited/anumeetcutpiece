@@ -12,7 +12,7 @@ export default function WhatsAppIcon({
     <img
       src="/whatsapp-icon.png"
       alt={alt}
-      className={`${className} object-contain inline-block shrink-0`}
+      className={`${className} object-contain block shrink-0`}
       loading="eager"
     />
   );

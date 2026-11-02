@@ -294,11 +294,11 @@ export default function App() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold p-3.5 rounded-full shadow-2xl transition-all duration-300 hover:shadow-green-500/40 group border-2 border-white/60"
+        className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center justify-center bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold h-14 min-w-[56px] p-3.5 rounded-full shadow-2xl transition-all duration-300 hover:shadow-green-500/40 group border-2 border-white/80 cursor-pointer overflow-hidden"
         title="Chat directly on WhatsApp"
       >
-        <WhatsAppIcon className="w-7 h-7" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-1">
+        <WhatsAppIcon className="w-7 h-7 shrink-0" />
+        <span className="max-w-0 opacity-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:opacity-100 transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
           Chat with Us
         </span>
       </a>
