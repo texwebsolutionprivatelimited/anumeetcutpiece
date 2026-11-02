@@ -43,15 +43,16 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-us" className="max-w-7xl mx-auto px-3 sm:px-6 my-14 sm:my-20">
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <span className="text-xs font-bold text-[#801438] uppercase tracking-wider bg-[#801438]/10 px-3.5 py-1.5 rounded-full">
-          Trust &amp; Purity
-        </span>
-        <h2 className="text-2xl sm:text-4xl font-black text-[#0b1b36] mt-3 tracking-tight">
+    <section id="why-us" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-10 sm:my-14 lg:my-16 overflow-hidden">
+      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
+          <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
+          <span>Trust &amp; Purity</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
           Why Choose Anumeet Cutpiece?
         </h2>
-        <p className="text-gray-600 text-xs sm:text-base mt-2">
+        <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
           The trusted fabric supplier for boutique designers, master tailors, and garment makers
         </p>
       </div>

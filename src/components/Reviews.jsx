@@ -141,19 +141,19 @@ export default function Reviews() {
   };
 
   return (
-    <section className="bg-[#f5efe6] py-14 sm:py-20 border-y border-[#c99738]/30 overflow-hidden relative" id="testimonials">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12">
+    <section className="bg-[#f5efe6] py-10 sm:py-14 lg:py-16 border-y border-[#c99738]/30 overflow-hidden relative" id="testimonials">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 mb-8 sm:mb-10">
         <div className="text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-[#0b1b36] text-[#c99738] px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-sm mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#c99738]" />
-            <span>Homemakers, Boutiques &amp; Tailors • 100% Genuine Reviews</span>
+          <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
+            <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
+            <span>Customer Testimonials &amp; Reviews</span>
           </div>
           
-          <h2 className="text-2xl sm:text-4xl font-black text-[#0b1b36] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
             Loved by Homemakers, Tailors &amp; Boutiques
           </h2>
           
-          <p className="text-gray-600 text-xs sm:text-sm mt-2 leading-relaxed">
+          <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
             Real experiences from homemakers stitching at home, boutique owners, and master dressmakers who trust Anumeet Cutpiece for premium quality fabrics at honest wholesale prices.
           </p>
 

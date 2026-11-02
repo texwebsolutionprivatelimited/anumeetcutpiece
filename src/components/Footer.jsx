@@ -6,8 +6,8 @@ import { createGeneralInquiryWhatsAppLink, cleanPhoneNumber } from '../utils/wha
 
 export default function Footer({ whatsappPhone }) {
   return (
-    <footer className="bg-[#f7f2e8] text-[#1a2538] border-t-2 border-[#c99738]/40 pt-12 pb-24 sm:pb-12">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+    <footer className="bg-[#f7f2e8] text-[#1a2538] border-t-2 border-[#c99738]/40 pt-12 pb-24 sm:pb-12 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-[#e5d8c3]">
@@ -65,10 +65,10 @@ export default function Footer({ whatsappPhone }) {
               href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba59] text-white font-bold px-4 py-2.5 rounded-full text-xs shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba59] text-white font-bold px-4 py-2.5 rounded-full text-xs shadow-md transition-all active:scale-95 whitespace-nowrap cursor-pointer"
             >
-              <WhatsAppIcon className="w-4 h-4" />
-              <span>WhatsApp Booking: +{cleanPhoneNumber(whatsappPhone)}</span>
+              <WhatsAppIcon className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">WhatsApp Booking: +{cleanPhoneNumber(whatsappPhone)}</span>
             </a>
           </div>
 

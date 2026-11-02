@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, Flame } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { cleanPhoneNumber, createGeneralInquiryWhatsAppLink } from '../utils/whatsapp';
 
@@ -21,11 +21,11 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#e8dfd1] shadow-xs">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 min-[880px]:px-5 lg:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-2 min-[880px]:gap-3 xl:gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between gap-1.5 sm:gap-3 xl:gap-4">
         
         {/* Brand & Logo */}
-        <a href="#" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10 min-[880px]:w-11 min-[880px]:h-11 xl:w-13 xl:h-13 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shadow-xs group-hover:scale-105 transition-transform duration-300">
+        <a href="#" className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0 min-w-0">
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 min-[880px]:w-11 min-[880px]:h-11 xl:w-13 xl:h-13 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0">
             <img
               src="/logo.png"
               alt="Anumeet Cutpiece Logo"
@@ -36,16 +36,16 @@ export default function Navbar({
               }}
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-0">
             <div className="flex items-baseline gap-1 lg:gap-1.5">
-              <span className="font-black text-sm sm:text-base min-[880px]:text-lg xl:text-2xl tracking-tight text-[#0b1b36]">
+              <span className="font-black text-xs sm:text-base min-[880px]:text-lg xl:text-2xl tracking-tight text-[#0b1b36]">
                 ANUMEET
               </span>
-              <span className="italic font-bold text-xs min-[880px]:text-sm xl:text-base text-[#801438]">
+              <span className="italic font-bold text-[11px] sm:text-sm xl:text-base text-[#801438]">
                 Cutpiece
               </span>
             </div>
-            <span className="hidden sm:block text-[7.5px] min-[880px]:text-[8.5px] xl:text-[10px] font-medium tracking-wider text-[#8a5d0e] uppercase">
+            <span className="hidden sm:block text-[7.5px] min-[880px]:text-[8.5px] xl:text-[10px] font-medium tracking-wider text-[#8a5d0e] uppercase truncate">
               Quality Fabric, Endless Possibilities
             </span>
           </div>
@@ -64,48 +64,47 @@ export default function Navbar({
                 link.highlight ? 'text-[#801438] font-bold' : ''
               }`}
             >
-              {link.isDiwali && <Flame className="w-3.5 h-3.5 text-amber-500 fill-current inline-block" />}
               <span>{link.name}</span>
             </a>
           ))}
         </nav>
 
-        {/* Action Controls */}
-        <div className="flex items-center gap-2 shrink-0">
+        {/* Action Controls (Responsive across 320px, 375px, 425px, 768px) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           
-          {/* WhatsApp Direct Header Callout */}
+          {/* WhatsApp Direct Header Callout (Icon on mobile, Button with text on tablet/desktop) */}
           <a
             href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 shadow-xs whitespace-nowrap"
+            className="w-8 h-8 sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white p-0 sm:px-3 sm:py-1.5 rounded-full text-xs font-bold transition-all duration-200 shadow-xs whitespace-nowrap shrink-0"
+            title="Order on WhatsApp"
           >
-            <WhatsAppIcon className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4 shrink-0" />
             <span className="hidden sm:inline">Order on WhatsApp</span>
-            <span className="sm:hidden">WhatsApp</span>
           </a>
 
-          {/* Cart Trigger Button */}
+          {/* Cart Trigger Button (Icon + Badge on mobile, Pill on tablet/desktop) */}
           <button
             onClick={onOpenCart}
-            className="relative flex items-center gap-1.5 bg-gradient-to-r from-[#c99738] to-[#dfb15b] hover:from-[#b98728] hover:to-[#c99738] text-[#0b1b36] font-bold px-3 sm:px-3.5 py-1.5 rounded-full text-xs sm:text-sm shadow-xs transition-all active:scale-95 cursor-pointer"
+            className="relative w-8 h-8 sm:w-auto flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#c99738] to-[#dfb15b] hover:from-[#b98728] hover:to-[#c99738] text-[#0b1b36] font-bold p-0 sm:px-3.5 sm:py-1.5 rounded-full text-xs sm:text-sm shadow-xs transition-all active:scale-95 cursor-pointer whitespace-nowrap shrink-0"
             aria-label="Open Shopping Cart"
           >
-            <div className="relative">
-              <ShoppingBag className="w-4 h-4 text-[#0b1b36]" />
+            <div className="relative flex items-center justify-center">
+              <ShoppingBag className="w-4 h-4 text-[#0b1b36] shrink-0" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#801438] text-white text-[9px] font-black min-w-4 h-4 px-1 rounded-full flex items-center justify-center shadow-xs border border-white animate-pulse">
+                <span className="absolute -top-2 -right-2 bg-[#801438] text-white text-[9px] font-black min-w-4 h-4 px-1 rounded-full flex items-center justify-center shadow-xs border border-white">
                   {cartCount}
                 </span>
               )}
             </div>
-            <span className="font-sans">Cart ({cartCount})</span>
+            <span className="hidden sm:inline font-sans">Cart ({cartCount})</span>
           </button>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="min-[880px]:hidden p-1.5 text-gray-700 hover:text-[#801438] rounded-lg"
+            className="min-[880px]:hidden w-8 h-8 flex items-center justify-center text-gray-700 hover:text-[#801438] rounded-lg shrink-0 cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -128,7 +127,6 @@ export default function Navbar({
                 className="py-2.5 px-3 rounded-xl hover:bg-[#faf5eb] hover:text-[#801438] transition-colors flex items-center justify-between"
               >
                 <span className="flex items-center gap-1.5">
-                  {link.isDiwali && <Flame className="w-4 h-4 text-amber-500 fill-current inline-block" />}
                   <span>{link.name}</span>
                 </span>
                 <span className="text-gray-400 text-xs">→</span>

@@ -21,11 +21,13 @@
     box-sizing: border-box;
   }
 
-  body {
+  html, body, #root {
     background-color: #faf7f2;
     color: #212121;
     font-family: 'Inter', 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

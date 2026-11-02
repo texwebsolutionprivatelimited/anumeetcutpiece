@@ -169,7 +169,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf7f2] text-[#1a2538] font-sans">
+    <div className="min-h-screen flex flex-col bg-[#faf7f2] text-[#1a2538] font-sans pb-16 sm:pb-0 overflow-x-hidden w-full">
       
       {/* 1. Top Offer Ticker: ₹500 Free Delivery Rule */}
       <NoticeTicker />
@@ -274,14 +274,14 @@ export default function App() {
 
       {/* 12. Floating Cart Toast Notification Pill */}
       {toastMessage && (
-        <div className="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#0b1b36] text-white border-2 border-[#c99738] px-3.5 sm:px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm animate-bounce">
+        <div className="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#0b1b36] text-white border-2 border-[#c99738] px-3 sm:px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs sm:text-sm animate-bounce max-w-[92vw]">
           <CheckCircle2 className="w-4 h-4 text-[#25d366] shrink-0" />
-          <span className="font-semibold text-white truncate max-w-[170px] sm:max-w-xs">
+          <span className="font-semibold text-white truncate max-w-[110px] sm:max-w-xs">
             {toastMessage}
           </span>
           <button
             onClick={() => setIsCartOpen(true)}
-            className="bg-[#c99738] hover:bg-[#dfb15b] active:scale-95 text-[#0b1b36] font-bold px-2.5 sm:px-3 py-1 rounded-full text-xs shadow-xs cursor-pointer shrink-0"
+            className="bg-[#c99738] hover:bg-[#dfb15b] active:scale-95 text-[#0b1b36] font-bold px-2.5 sm:px-3 py-1 rounded-full text-xs shadow-xs cursor-pointer shrink-0 whitespace-nowrap"
           >
             View Cart ({totalCartCount})
           </button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DIWALI_OFFER_ITEMS } from '../data/products';
-import { Sparkles, ShoppingBag, Flame, Zap, Plus, Minus } from 'lucide-react';
+import { Sparkles, ShoppingBag, Zap, Plus, Minus } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { createSingleProductWhatsAppLink } from '../utils/whatsapp';
 
@@ -25,33 +25,34 @@ export default function StockDealsSection({
   };
 
   return (
-    <section id="diwali-offers" className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 my-10 sm:my-14 lg:my-16 relative">
+    <section id="diwali-offers" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-10 sm:my-14 lg:my-16 relative overflow-hidden">
       <div id="winter-stock" className="absolute -top-16 left-0" />
       
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
-        <div>
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3 py-1 rounded-full mb-2">
-            <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
-            Diwali Festive Special Offers
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight flex items-center gap-2">
-            <Flame className="w-7 h-7 text-amber-500 fill-current inline-block" />
-            <span>Diwali Dhamaka Cutpiece Deals</span>
-          </h2>
-          <p className="text-gray-600 text-xs sm:text-sm mt-1 max-w-xl">
-            Celebrate this Diwali with huge savings on wholesale cut pieces! Available in 5m and 10m continuous cuts for festive lehengas, suits, and kurtis.
-          </p>
+      {/* Section Header (Centered Alignment & Consistent Size) */}
+      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
+          <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
+          <span>Diwali Festive Special Offers</span>
         </div>
+        
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
+          Diwali Dhamaka Cutpiece Deals
+        </h2>
+        
+        <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
+          Celebrate this Diwali with huge savings on wholesale cut pieces! Available in 5m and 10m continuous cuts for festive lehengas, suits, and kurtis.
+        </p>
 
-        <div className="bg-[#c99738]/15 border border-[#c99738]/40 px-3.5 py-1.5 rounded-2xl text-xs font-bold text-[#8a5d0e] flex items-center gap-1.5 self-start md:self-auto shadow-xs">
-          <Zap className="w-3.5 h-3.5 text-amber-600 fill-current" />
-          <span>5m vs 10m Festive Saver</span>
+        <div className="mt-3 flex items-center justify-center">
+          <div className="inline-flex items-center gap-1.5 bg-[#c99738]/15 border border-[#c99738]/40 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#8a5d0e] shadow-xs whitespace-nowrap">
+            <Zap className="w-3.5 h-3.5 text-amber-600 fill-current" />
+            <span>5m vs 10m Festive Saver</span>
+          </div>
         </div>
       </div>
 
-      {/* Stock Cards Grid (Optimized for 1024px laptop and all screens) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-3 xl:gap-5">
+      {/* Stock Cards Grid (Optimized for 320px, 375px, 425px, 768px and all screens) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-5">
         {DIWALI_OFFER_ITEMS.map((item) => {
           const currentLength = selectedLengths[item.id] || '5m';
           const is10m = currentLength === '10m';
@@ -86,8 +87,8 @@ export default function StockDealsSection({
               className="bg-white rounded-3xl overflow-hidden border border-[#c99738]/30 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group relative cursor-pointer"
             >
               {/* Badge Tag */}
-              <div className="absolute top-2.5 left-2.5 z-10 bg-[#801438] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                <Flame className="w-2.5 h-2.5 text-amber-400 fill-current" />
+              <div className="absolute top-2.5 left-2.5 z-10 bg-[#801438] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                <Sparkles className="w-2.5 h-2.5 text-[#ffd978] fill-current" />
                 <span>{item.badge}</span>
               </div>
 
@@ -96,8 +97,8 @@ export default function StockDealsSection({
                 {discountPercent}% OFF
               </div>
 
-              {/* Dummy Fabric Visual Preview */}
-              <div className="relative aspect-4/3 w-full overflow-hidden bg-[#faf7f2]">
+              {/* Fabric Visual Preview */}
+              <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full max-h-52 sm:max-h-none overflow-hidden bg-[#faf7f2]">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -143,7 +144,7 @@ export default function StockDealsSection({
                           e.stopPropagation();
                           toggleLength(item.id, '5m');
                         }}
-                        className={`py-1 text-[10px] sm:text-[11px] font-bold rounded-lg transition-all cursor-pointer ${
+                        className={`py-1 px-1 text-[10px] sm:text-[11px] font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                           !is10m
                             ? 'bg-[#0b1b36] text-[#ffd978] shadow-xs'
                             : 'text-gray-600 hover:text-black'
@@ -157,7 +158,7 @@ export default function StockDealsSection({
                           e.stopPropagation();
                           toggleLength(item.id, '10m');
                         }}
-                        className={`py-1 text-[10px] sm:text-[11px] font-bold rounded-lg transition-all cursor-pointer ${
+                        className={`py-1 px-1 text-[10px] sm:text-[11px] font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                           is10m
                             ? 'bg-[#801438] text-white shadow-xs'
                             : 'text-gray-600 hover:text-black'

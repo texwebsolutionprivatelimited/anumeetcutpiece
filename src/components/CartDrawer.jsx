@@ -235,9 +235,9 @@ export default function CartDrawer({
 
           {/* Stepper Progress Bar (for Steps 1, 2, 3, 4) */}
           {currentStep <= 4 && (
-            <div className="grid grid-cols-4 gap-1 mt-3 pt-2.5 border-t border-amber-200/50 text-[10px] font-bold">
+            <div className="grid grid-cols-4 gap-1 mt-3 pt-2.5 border-t border-amber-200/50 text-[9px] sm:text-[10px] font-bold">
               <div
-                className={`py-1 text-center rounded-md border transition-all ${
+                className={`py-1 text-center rounded-md border transition-all truncate ${
                   currentStep >= 1
                     ? 'bg-[#0b1b36] text-[#ffd978] border-[#0b1b36]'
                     : 'bg-white text-gray-400 border-gray-200'
@@ -246,25 +246,25 @@ export default function CartDrawer({
                 1. Items
               </div>
               <div
-                className={`py-1 text-center rounded-md border transition-all ${
+                className={`py-1 text-center rounded-md border transition-all truncate ${
                   currentStep >= 2
                     ? 'bg-[#0b1b36] text-[#ffd978] border-[#0b1b36]'
                     : 'bg-white text-gray-400 border-gray-200'
                 }`}
               >
-                2. Color/Notes
+                2. Color
               </div>
               <div
-                className={`py-1 text-center rounded-md border transition-all ${
+                className={`py-1 text-center rounded-md border transition-all truncate ${
                   currentStep >= 3
                     ? 'bg-[#0b1b36] text-[#ffd978] border-[#0b1b36]'
                     : 'bg-white text-gray-400 border-gray-200'
                 }`}
               >
-                3. Delivery
+                3. Details
               </div>
               <div
-                className={`py-1 text-center rounded-md border transition-all ${
+                className={`py-1 text-center rounded-md border transition-all truncate ${
                   currentStep >= 4
                     ? 'bg-[#0b1b36] text-[#ffd978] border-[#0b1b36]'
                     : 'bg-white text-gray-400 border-gray-200'
@@ -388,10 +388,10 @@ export default function CartDrawer({
                 <button
                   type="button"
                   onClick={() => setCurrentStep(2)}
-                  className="w-full flex items-center justify-center gap-2 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3.5 px-4 rounded-2xl text-sm shadow-md transition-all cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm shadow-md transition-all cursor-pointer whitespace-nowrap"
                 >
-                  <span>Continue to Fabric Preferences</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="whitespace-nowrap">Continue to Fabric Preferences</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
 
                 {!isDirectBuy && (
@@ -501,19 +501,19 @@ export default function CartDrawer({
               <button
                 type="button"
                 onClick={() => setCurrentStep(1)}
-                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3 px-3 rounded-2xl text-xs transition-colors cursor-pointer"
+                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3 px-3 rounded-2xl text-xs transition-colors cursor-pointer whitespace-nowrap"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back</span>
+                <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                <span className="whitespace-nowrap">Back</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setCurrentStep(3)}
-                className="flex-1 flex items-center justify-center gap-1.5 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm shadow-md transition-all cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-1.5 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3 px-3 sm:px-4 rounded-2xl text-xs sm:text-sm shadow-md transition-all cursor-pointer whitespace-nowrap"
               >
-                <span>Continue to Delivery Details</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="whitespace-nowrap">Continue to Details</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </>
@@ -670,10 +670,10 @@ export default function CartDrawer({
               <button
                 type="button"
                 onClick={() => setCurrentStep(2)}
-                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3 px-3 rounded-2xl text-xs transition-colors cursor-pointer"
+                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3 px-3 rounded-2xl text-xs transition-colors cursor-pointer whitespace-nowrap"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back</span>
+                <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                <span className="whitespace-nowrap">Back</span>
               </button>
 
               <button
@@ -683,10 +683,10 @@ export default function CartDrawer({
                     setCurrentStep(4);
                   }
                 }}
-                className="flex-1 flex items-center justify-center gap-1.5 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3 px-4 rounded-2xl text-xs sm:text-sm shadow-md transition-all cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-1.5 bg-[#0b1b36] hover:bg-[#152a4d] active:scale-95 text-[#ffd978] font-bold py-3 px-3 sm:px-4 rounded-2xl text-xs sm:text-sm shadow-md transition-all cursor-pointer whitespace-nowrap"
               >
-                <span>Continue to Price Details</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="whitespace-nowrap">Continue to Price</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </>
@@ -801,16 +801,16 @@ export default function CartDrawer({
               <button
                 type="button"
                 onClick={() => setCurrentStep(3)}
-                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3.5 px-3 rounded-2xl text-xs transition-colors cursor-pointer"
+                className="w-1/3 flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-3.5 px-3 rounded-2xl text-xs transition-colors cursor-pointer whitespace-nowrap"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back</span>
+                <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                <span className="whitespace-nowrap">Back</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSendOrderToWhatsApp('shop')}
-                className="flex-1 flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold py-3.5 px-4 rounded-2xl text-xs sm:text-sm shadow-lg shadow-[#25d366]/30 transition-all cursor-pointer whitespace-nowrap"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold py-3.5 px-3 sm:px-4 rounded-2xl text-xs sm:text-sm shadow-lg shadow-[#25d366]/30 transition-all cursor-pointer whitespace-nowrap"
                 title="Send order to WhatsApp"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />

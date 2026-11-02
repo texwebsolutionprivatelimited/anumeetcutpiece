@@ -50,44 +50,46 @@ export default function ProductCatalog({
   }, [selectedCategory, searchQuery, sortBy]);
 
   return (
-    <section id="catalog" className="max-w-7xl mx-auto px-3 sm:px-6 my-12 sm:my-16">
+    <section id="catalog" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-10 sm:my-14 lg:my-16 overflow-hidden">
       
       {/* Title & Description */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-        <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#c99738] bg-[#0b1b36] px-3.5 py-1.5 rounded-full mb-3 shadow-xs">
-          <Sparkles className="w-3.5 h-3.5 fill-current text-[#ffd978]" />
+        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
+          <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
           <span>Full Product Catalog ({REGULAR_PRODUCTS.length} Fabrics)</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-black text-[#0b1b36] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
           Explore Our Wholesale Fabrics
         </h2>
-        <p className="text-gray-600 text-xs sm:text-base mt-2">
+        <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
           Order premium fabrics in convenient 5-meter continuous cuts or individual pieces directly via WhatsApp.
         </p>
       </div>
 
-      {/* Category Pills (Horizontal Scroll on Mobile) */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none no-scrollbar">
-        {CATEGORIES.map((cat) => {
-          const isActive = selectedCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 shrink-0 ${
-                isActive
-                  ? 'bg-[#0b1b36] text-[#ffd978] shadow-md scale-102 border border-[#c99738]'
-                  : 'bg-white text-gray-700 hover:bg-[#faf7f2] border border-gray-200'
-              }`}
-            >
-              {cat}
-            </button>
-          );
-        })}
+      {/* Category Pills (Safe Horizontal Scroll with zero page blowout) */}
+      <div className="w-full overflow-x-auto pb-2.5 mb-5 sm:mb-6 scrollbar-none no-scrollbar scroll-smooth">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2">
+          {CATEGORIES.map((cat) => {
+            const isActive = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3 sm:px-4.5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-semibold whitespace-nowrap transition-all duration-200 shrink-0 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0b1b36] text-[#ffd978] shadow-md scale-102 border border-[#c99738]'
+                    : 'bg-white text-gray-700 hover:bg-[#faf7f2] border border-gray-200 shadow-2xs'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Filter & Search Bar Row */}
-      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-xs mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-xs mb-8 flex flex-col sm:flex-row items-center justify-between gap-3 min-w-0 overflow-hidden">
         
         {/* Search Input */}
         <div className="relative w-full sm:w-72">
@@ -111,19 +113,19 @@ export default function ProductCatalog({
         </div>
 
         {/* Counter & Sort By */}
-        <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-          <span className="text-xs text-gray-500 font-medium">
+        <div className="flex items-center justify-between w-full sm:w-auto gap-2 min-w-0">
+          <span className="text-[11px] sm:text-xs text-gray-500 font-medium truncate">
             Showing <strong className="text-[#0b1b36]">{filteredProducts.length}</strong> items
           </span>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             <SlidersHorizontal className="w-3.5 h-3.5 text-gray-500" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-[#faf7f2] border border-gray-200 text-xs sm:text-sm rounded-xl px-2.5 py-1.5 focus:outline-hidden text-gray-700 font-medium cursor-pointer"
+              className="bg-[#faf7f2] border border-gray-200 text-[11px] sm:text-xs rounded-xl px-2 py-1 focus:outline-hidden text-gray-700 font-medium cursor-pointer"
             >
-              <option value="featured">Featured / Default</option>
+              <option value="featured">Featured</option>
               <option value="low-to-high">Price: Low to High</option>
               <option value="high-to-low">Price: High to Low</option>
             </select>

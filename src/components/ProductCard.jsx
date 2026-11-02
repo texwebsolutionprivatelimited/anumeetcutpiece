@@ -55,7 +55,7 @@ export default function ProductCard({
       )}
 
       {/* Image Preview with Hover Quick View Button */}
-      <div className="relative aspect-4/3 w-full overflow-hidden bg-[#faf7f2]">
+      <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full max-h-52 sm:max-h-none overflow-hidden bg-[#faf7f2]">
         <img
           src={product.image}
           alt={product.name}
@@ -92,7 +92,7 @@ export default function ProductCard({
       </div>
 
       {/* Card Content */}
-      <div className="p-3.5 sm:p-4.5 flex-1 flex flex-col justify-between">
+      <div className="p-3 sm:p-4.5 flex-1 flex flex-col justify-between">
         <div>
           {/* Category */}
           <p className="text-[10px] sm:text-[11px] text-[#878787] font-semibold uppercase tracking-wider mb-0.5">
@@ -110,15 +110,15 @@ export default function ProductCard({
           </p>
 
           {/* Short Description */}
-          <p className="text-[11px] sm:text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-gray-500 mt-1 line-clamp-1 sm:line-clamp-2 leading-relaxed">
             {product.description}
           </p>
         </div>
 
         {/* Price & Actions Section (Flipkart Signature Pricing Layout) */}
-        <div className="mt-3.5 pt-2.5 border-t border-gray-100">
-          <div className="flex items-baseline gap-2 flex-wrap mb-1">
-            <span className="text-lg sm:text-xl font-bold text-[#212121]">
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-gray-100">
+          <div className="flex items-baseline gap-2 flex-wrap mb-0.5 sm:mb-1">
+            <span className="text-base sm:text-xl font-bold text-[#212121]">
               ₹{product.sellPrice}
             </span>
             {product.mrp && (
@@ -134,8 +134,8 @@ export default function ProductCard({
           </div>
 
           {/* Flipkart Free Delivery & Length Tag */}
-          <div className="flex items-center justify-between text-[11px] mb-3 text-gray-500">
-            <span className="text-[#388e3c] font-semibold">Free delivery</span>
+          <div className="flex items-center justify-between text-[11px] mb-2 sm:mb-3 text-gray-500">
+            <span className="text-[#388e3c] font-semibold text-[10.5px] sm:text-[11px]">Free delivery</span>
             <span className="text-[10px] text-gray-500 font-medium">
               Cut: {product.unit}
             </span>
