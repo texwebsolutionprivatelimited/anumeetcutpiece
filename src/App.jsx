@@ -98,6 +98,87 @@ export default function App() {
     }
   }, [cart]);
 
+  // Deep-Link & Direct Route Handler: Auto-scroll to #catalog when /catalog, /catlog, or #catalog is opened
+  useEffect(() => {
+    const handleUrlRoute = (isInitial = false) => {
+      const pathname = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+      const hash = window.location.hash.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get('category') || params.get('cat');
+
+      if (catParam) {
+        setSelectedCategory(catParam);
+      }
+
+      // Match /catalog, /catlog, #catalog, or /catalog?category=...
+      const isCatalog =
+        pathname === '/catalog' ||
+        pathname === '/catlog' ||
+        pathname.endsWith('/catalog') ||
+        pathname.endsWith('/catlog') ||
+        hash === '#catalog';
+
+      // Match /diwali, /diwali-offers, #diwali-offers
+      const isDiwali =
+        pathname === '/diwali' ||
+        pathname === '/diwali-offers' ||
+        hash === '#diwali' ||
+        hash === '#diwali-offers';
+
+      if (isCatalog) {
+        const scrollToTarget = () => {
+          const el = document.getElementById('catalog');
+          if (el) {
+            el.scrollIntoView({ behavior: isInitial ? 'auto' : 'smooth' });
+          }
+        };
+
+        // Scroll immediately on mount (so user lands directly on catalog, not top hero)
+        scrollToTarget();
+        const t1 = setTimeout(scrollToTarget, 50);
+        const t2 = setTimeout(scrollToTarget, 200);
+        const t3 = setTimeout(scrollToTarget, 500);
+
+        return () => {
+          clearTimeout(t1);
+          clearTimeout(t2);
+          clearTimeout(t3);
+        };
+      } else if (isDiwali) {
+        const scrollToTarget = () => {
+          const el = document.getElementById('diwali-offers');
+          if (el) {
+            el.scrollIntoView({ behavior: isInitial ? 'auto' : 'smooth' });
+          }
+        };
+
+        scrollToTarget();
+        const t1 = setTimeout(scrollToTarget, 50);
+        const t2 = setTimeout(scrollToTarget, 200);
+        const t3 = setTimeout(scrollToTarget, 500);
+
+        return () => {
+          clearTimeout(t1);
+          clearTimeout(t2);
+          clearTimeout(t3);
+        };
+      }
+    };
+
+    const cleanup = handleUrlRoute(true);
+    const onHashChange = () => handleUrlRoute(false);
+    const onPopState = () => handleUrlRoute(false);
+
+    window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('popstate', onPopState);
+
+    return () => {
+      if (cleanup) cleanup();
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('popstate', onPopState);
+    };
+  }, []);
+
   // Query quantity of an item already in cart
   const getItemQuantity = (id, length) => {
     const item = cart.find(

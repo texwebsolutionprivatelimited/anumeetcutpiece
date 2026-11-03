@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#0b1b36" />
     
+    <!-- Single-Page App Direct Route Recovery (for /catalog, /catlog, etc.) -->
+    <script>
+      (function(){
+        try {
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== location.href) {
+            history.replaceState(null, null, redirect);
+          }
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Primary SEO Meta Tags (Optimized for Bhopal & India Search Rankings) -->
     <title>Anumeet Cutpiece Bhopal | Best Cut Piece Fabric & Wholesale Cloth Store</title>
     <meta name="title" content="Anumeet Cutpiece Bhopal | Best Cut Piece Fabric & Wholesale Cloth Store" />
