@@ -66,18 +66,18 @@ export default function ProductCatalog({
         </p>
       </div>
 
-      {/* Filter & Search Toolbar (Sleek Mobile & Desktop E-Commerce Controls) */}
-      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 mb-6 sm:mb-8 flex flex-col gap-2.5 sm:gap-3 w-full max-w-full min-w-0 shadow-2xs">
+      {/* Filter & Search Toolbar (Sleek Single Row on Desktop/Tablet, Responsive Mobile) */}
+      <div className="bg-white p-2.5 sm:p-3 rounded-2xl border border-gray-200 mb-6 sm:mb-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full max-w-full min-w-0 shadow-2xs">
         
-        {/* Row 1: Search Input */}
-        <div className="relative w-full">
+        {/* 1. Search Input (Expands to fill row) */}
+        <div className="relative flex-1 min-w-0">
           <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 shrink-0 pointer-events-none" />
           <input
             type="text"
             placeholder="Search fabric name or type..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#faf7f2] border border-gray-200 focus:border-[#c99738] rounded-xl pl-9.5 pr-8 py-2.5 text-xs sm:text-sm text-[#0b1b36] placeholder-gray-400 focus:outline-hidden transition-colors"
+            className="w-full bg-[#faf7f2] border border-gray-200 focus:border-[#c99738] rounded-xl pl-9.5 pr-8 py-2 sm:py-2.5 text-xs sm:text-sm text-[#0b1b36] placeholder-gray-400 focus:outline-hidden transition-colors"
           />
           {searchQuery && (
             <button
@@ -90,68 +90,61 @@ export default function ProductCatalog({
           )}
         </div>
 
-        {/* Row 2: Dual Dropdowns & Counter */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
+        {/* 2. Dual Dropdowns & Reset Filter in the Same Row */}
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-2 shrink-0">
           
-          {/* Dual Dropdowns: Exactly 50% / 50% equal columns on mobile, auto-inline on tablet/desktop */}
-          <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3 w-full sm:w-auto">
-            
-            {/* Category Dropdown */}
-            <div className="relative w-full sm:w-auto">
-              <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-[#801438]">
-                <Filter className="w-3.5 h-3.5" />
-              </div>
-              <select
-                id="category-select"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-[#c99738]/80 hover:border-[#801438] text-[11px] sm:text-xs font-bold rounded-xl pl-7.5 pr-6.5 py-2 text-[#0b1b36] cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
-                aria-label="Filter fabrics by category"
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat} {cat === 'All Fabrics' ? `(${REGULAR_PRODUCTS.length})` : ''}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 text-[#801438] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+          {/* Category Dropdown */}
+          <div className="relative w-full sm:w-auto">
+            <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-[#801438]">
+              <Filter className="w-3.5 h-3.5" />
             </div>
+            <select
+              id="category-select"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-[#c99738]/80 hover:border-[#801438] text-[11px] sm:text-xs font-bold rounded-xl pl-7.5 pr-6.5 py-2 sm:py-2.5 text-[#0b1b36] cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
+              aria-label="Filter fabrics by category"
+            >
+              {CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat} {cat === 'All Fabrics' ? `(${REGULAR_PRODUCTS.length})` : ''}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-[#801438] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+          </div>
 
-            {/* Sort Dropdown */}
-            <div className="relative w-full sm:w-auto">
-              <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-gray-500">
-                <SlidersHorizontal className="w-3.5 h-3.5" />
-              </div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-gray-200 hover:border-gray-400 text-[11px] sm:text-xs font-semibold rounded-xl pl-7.5 pr-6.5 py-2 text-gray-700 cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
-                aria-label="Sort fabrics by price or relevance"
-              >
-                <option value="featured">Featured</option>
-                <option value="low-to-high">Price: Low to High</option>
-                <option value="high-to-low">Price: High to Low</option>
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 text-gray-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+          {/* Sort Dropdown */}
+          <div className="relative w-full sm:w-auto">
+            <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-gray-500">
+              <SlidersHorizontal className="w-3.5 h-3.5" />
             </div>
-
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-gray-200 hover:border-gray-400 text-[11px] sm:text-xs font-semibold rounded-xl pl-7.5 pr-6.5 py-2 sm:py-2.5 text-gray-700 cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
+              aria-label="Sort fabrics by price or relevance"
+            >
+              <option value="featured">Featured</option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-gray-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
           </div>
 
           {/* Reset Action (only shown when filtered or searched) */}
           {(selectedCategory !== 'All Fabrics' || searchQuery) && (
-            <div className="flex items-center justify-end px-0.5 pt-0.5 sm:pt-0">
-              <button
-                onClick={() => {
-                  setSelectedCategory('All Fabrics');
-                  setSearchQuery('');
-                }}
-                className="text-[10.5px] sm:text-[11px] font-bold text-[#801438] hover:text-[#0b1b36] flex items-center gap-1 cursor-pointer transition-colors whitespace-nowrap underline decoration-[#c99738]"
-                title="Reset all filters"
-              >
-                <span>Reset filters</span>
-                <X className="w-3 h-3" />
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                setSelectedCategory('All Fabrics');
+                setSearchQuery('');
+              }}
+              className="col-span-2 sm:col-auto inline-flex items-center justify-center gap-1 px-2.5 py-2 text-[11px] font-bold text-[#801438] hover:text-[#0b1b36] bg-[#801438]/5 hover:bg-[#801438]/10 rounded-xl cursor-pointer transition-colors whitespace-nowrap"
+              title="Reset all filters"
+            >
+              <span>Reset</span>
+              <X className="w-3 h-3" />
+            </button>
           )}
 
         </div>
