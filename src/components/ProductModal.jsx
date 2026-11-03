@@ -9,6 +9,7 @@ export default function ProductModal({
   onDirectBuy,
   quantityInCart = 0,
   whatsappPhone,
+  onOpenPolicy,
 }) {
   const [quantity, setQuantity] = useState(1);
 
@@ -158,6 +159,22 @@ export default function ProductModal({
               <div className="flex items-center gap-2">
                 <Truck className="w-3.5 h-3.5 text-[#801438] shrink-0" />
                 <span>Eligible for <strong>FREE Delivery</strong> on ₹500+ (within 3 KM)</span>
+              </div>
+              <div className="flex items-center justify-between text-[10.5px] sm:text-xs text-[#801438] bg-[#fff5f5] border border-[#f5c2c7] px-2.5 py-1.5 rounded-xl mt-1">
+                <div className="flex items-center gap-1.5 font-bold">
+                  <RefreshCw className="w-3.5 h-3.5 shrink-0" />
+                  <span>No Cash Refund • 48h Easy Exchange</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    onOpenPolicy && onOpenPolicy('exchange');
+                  }}
+                  className="font-bold underline text-[10px] hover:text-[#0b1b36] cursor-pointer shrink-0"
+                >
+                  Policy ↗
+                </button>
               </div>
             </div>
 

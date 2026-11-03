@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
 import CartDrawer from './components/CartDrawer';
 import WhatsAppSettingsModal from './components/WhatsAppSettingsModal';
+import PolicyModal from './components/PolicyModal';
 import StickyMobileBar from './components/StickyMobileBar';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import { createGeneralInquiryWhatsAppLink, createSingleProductWhatsAppLink } from './utils/whatsapp';
@@ -43,6 +44,13 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [directBuyItem, setDirectBuyItem] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isPolicyModalOpen, setIsPolicyModalOpen] = useState(false);
+  const [policyInitialTab, setPolicyInitialTab] = useState('exchange');
+
+  const handleOpenPolicy = (tab = 'exchange') => {
+    setPolicyInitialTab(tab);
+    setIsPolicyModalOpen(true);
+  };
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Fabrics');
@@ -328,7 +336,7 @@ export default function App() {
       <Reviews />
 
       {/* 9. Comprehensive Footer */}
-      <Footer whatsappPhone={whatsappPhone} />
+      <Footer whatsappPhone={whatsappPhone} onOpenPolicy={handleOpenPolicy} />
 
       {/* 10. Modals & Drawers */}
       <ProductModal
@@ -338,6 +346,7 @@ export default function App() {
         onDirectBuy={handleDirectBuy}
         quantityInCart={quickViewProduct ? getItemQuantity(quickViewProduct.id, quickViewProduct.unit) : 0}
         whatsappPhone={whatsappPhone}
+        onOpenPolicy={handleOpenPolicy}
       />
 
       <CartDrawer
@@ -353,6 +362,7 @@ export default function App() {
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
         whatsappPhone={whatsappPhone}
+        onOpenPolicy={handleOpenPolicy}
       />
 
       <WhatsAppSettingsModal
@@ -360,6 +370,14 @@ export default function App() {
         onClose={() => setIsSettingsOpen(false)}
         currentPhone={whatsappPhone}
         onSavePhone={handleSavePhone}
+      />
+
+      {/* Store Policies & Terms Modal */}
+      <PolicyModal
+        isOpen={isPolicyModalOpen}
+        onClose={() => setIsPolicyModalOpen(false)}
+        initialTab={policyInitialTab}
+        whatsappPhone={whatsappPhone}
       />
 
       {/* 11. Sticky Mobile Action Bar (for 320px to 768px screens) */}

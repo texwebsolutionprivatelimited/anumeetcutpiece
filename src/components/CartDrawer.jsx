@@ -71,6 +71,7 @@ export default function CartDrawer({
   onRemoveItem,
   onClearCart,
   whatsappPhone,
+  onOpenPolicy,
 }) {
   // Steps:
   // 1: Selected Items Review
@@ -380,6 +381,19 @@ export default function CartDrawer({
             {/* Step 1 Footer */}
             {activeItems.length > 0 && (
               <div className="p-4 bg-[#faf7f2] border-t border-gray-200 space-y-2.5 shrink-0">
+                <div className="flex items-center justify-between text-[10px] sm:text-[10.5px] text-gray-700 bg-[#fff5f5] border border-[#f5c2c7] px-2.5 py-1.5 rounded-xl">
+                  <span className="font-bold text-[#801438] flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-[#801438] shrink-0" />
+                    No Cash Refund • 48h Easy Exchange
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onOpenPolicy && onOpenPolicy('exchange')}
+                    className="text-[#801438] font-bold underline hover:text-[#0b1b36] cursor-pointer shrink-0"
+                  >
+                    Policy ↗
+                  </button>
+                </div>
                 <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-[#0b1b36] px-1">
                   <span>Items Total ({totalItemCount} {totalItemCount === 1 ? 'item' : 'items'}):</span>
                   <span className="text-base sm:text-lg font-black">₹{subtotal}</span>

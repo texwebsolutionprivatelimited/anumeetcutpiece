@@ -66,7 +66,7 @@ export default function Hero({ whatsappPhone, onExploreClick }) {
               >
                 <img
                   src={shopImage}
-                  alt="Anumeet Cutpiece Storefront - Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal"
+                  alt="Anumeet Cutpiece Storefront - Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal"
                   className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-102"
                   fetchPriority="high"
                   decoding="async"
@@ -244,7 +244,7 @@ export default function Hero({ whatsappPhone, onExploreClick }) {
             <div className="max-h-[75vh] overflow-auto bg-black flex items-center justify-center p-1">
               <img
                 src={shopImage}
-                alt="Anumeet Cutpiece Storefront - Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal"
+                alt="Anumeet Cutpiece Storefront - Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal"
                 className="w-full h-auto max-h-[75vh] object-contain"
               />
             </div>
@@ -256,7 +256,7 @@ export default function Hero({ whatsappPhone, onExploreClick }) {
                   Anumeet Cutpiece — Bhopal Storefront
                 </p>
                 <p className="text-xs text-gray-600 mt-0.5">
-                  Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal, Madhya Pradesh - 462022
+                  Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal, Madhya Pradesh 462022, India
                 </p>
               </div>
 

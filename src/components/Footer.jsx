@@ -1,10 +1,10 @@
 import React from 'react';
-import { Phone, MapPin, Truck, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import { Phone, MapPin, Truck, ShieldCheck, Heart, Sparkles, RefreshCw } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { STORE_CONFIG } from '../data/products';
 import { createGeneralInquiryWhatsAppLink, cleanPhoneNumber } from '../utils/whatsapp';
 
-export default function Footer({ whatsappPhone }) {
+export default function Footer({ whatsappPhone, onOpenPolicy }) {
   return (
     <footer className="bg-[#f7f2e8] text-[#1a2538] border-t-2 border-[#c99738]/40 pt-7 sm:pt-10 pb-14 sm:pb-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
@@ -48,13 +48,13 @@ export default function Footer({ whatsappPhone }) {
                 <span>
                   <strong>Store Address:</strong>{' '}
                   <a
-                    href="https://maps.google.com/?q=Sector+A+Kiran+Nagar+Ayodhya+Nagar+Bhopal+Madhya+Pradesh+462022"
+                    href="https://maps.google.com/?q=Hno-13+Sukh+Sagar+Phase-1+Kiran+Nagar+Ayodhya+Nagar+Bhopal+Madhya+Pradesh+462022"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#801438] hover:underline"
                     title="View Anumeet Cutpiece on Google Maps"
                   >
-                    Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022 ↗
+                    Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022 ↗
                   </a>
                 </span>
               </div>
@@ -100,30 +100,66 @@ export default function Footer({ whatsappPhone }) {
             </ul>
           </div>
 
-          {/* Delivery & Policies */}
+          {/* Delivery & Shop Policies */}
           <div className="md:col-span-2 lg:col-span-4 space-y-3">
             <h4 className="font-bold text-xs uppercase tracking-wider text-[#801438]">
-              Delivery &amp; Shop Policy
+              Shop Policies &amp; Trust
             </h4>
             <div className="space-y-2 text-[11px] sm:text-xs text-gray-700">
-              <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
-                <Truck className="w-4 h-4 text-[#801438] shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2 bg-[#fff7f7] p-2.5 rounded-xl border border-[#f5c2c7]">
+                <RefreshCw className="w-4 h-4 text-[#801438] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-[#0b1b36]">Free Delivery (Within 3 KM):</strong> Free home delivery on orders of ₹500+ within 3 KM radius of our shop. Charges apply beyond 3 KM.
+                  <strong className="text-[#801438]">No Refund • 48h Easy Exchange:</strong> Cut pieces are non-refundable once cut. Free replacement/exchange available within 48h for manufacturing defects.{' '}
+                  <button
+                    type="button"
+                    onClick={() => onOpenPolicy && onOpenPolicy('exchange')}
+                    className="text-[#801438] font-bold underline hover:text-[#0b1b36] cursor-pointer inline"
+                  >
+                    View Details ↗
+                  </button>
                 </span>
               </div>
+
               <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
-                <MapPin className="w-4 h-4 text-[#0d7a38] shrink-0 mt-0.5" />
+                <Truck className="w-4 h-4 text-[#25d366] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-[#0b1b36]">Pan-India Delivery:</strong> Reliable tracked courier delivery anywhere across all of India!
+                  <strong className="text-[#0b1b36]">Free Delivery (Within 3 KM):</strong> Orders ₹500+ free in Bhopal. Pan-India tracked courier.
                 </span>
               </div>
+
               <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
                 <ShieldCheck className="w-4 h-4 text-[#c99738] shrink-0 mt-0.5" />
                 <span>
                   <strong className="text-[#0b1b36]">Continuous Cuts:</strong> Guaranteed seamless 5m &amp; 10m uncut continuous fabrics.
                 </span>
               </div>
+            </div>
+
+            {/* Quick Policy Modal Triggers */}
+            <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[#801438] font-semibold">
+              <button
+                type="button"
+                onClick={() => onOpenPolicy && onOpenPolicy('exchange')}
+                className="hover:underline cursor-pointer"
+              >
+                Refund &amp; Exchange Policy
+              </button>
+              <span>•</span>
+              <button
+                type="button"
+                onClick={() => onOpenPolicy && onOpenPolicy('terms')}
+                className="hover:underline cursor-pointer"
+              >
+                Terms &amp; Conditions
+              </button>
+              <span>•</span>
+              <button
+                type="button"
+                onClick={() => onOpenPolicy && onOpenPolicy('shipping')}
+                className="hover:underline cursor-pointer"
+              >
+                Delivery Policy
+              </button>
             </div>
           </div>
 

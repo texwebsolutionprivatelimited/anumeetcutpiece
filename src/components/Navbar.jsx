@@ -219,7 +219,7 @@ export default function Navbar({
 
               {/* Store location & Call link */}
               <div className="flex items-center justify-between text-[11px] text-gray-500 px-1 pt-0.5">
-                <span className="truncate">📍 Ayodhya Nagar, Bhopal</span>
+                <span className="truncate">📍 Hno-13, Sukh Sagar Phase-1, Ayodhya Nagar, Bhopal</span>
                 <a
                   href={`tel:+${cleanPhoneNumber(whatsappPhone)}`}
                   className="inline-flex items-center gap-1 text-[#801438] font-bold hover:underline shrink-0"

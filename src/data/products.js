@@ -5,11 +5,13 @@ export const STORE_CONFIG = {
   tagline: "Quality Fabric, Endless Possibilities",
   slogan: "Feel the Fabric, Live the Fashion",
   subtitle: "Wholesale & Retail Fabric Merchant",
+  domain: "anumeetcutpiece.in",
+  websiteUrl: "https://anumeetcutpiece.in",
   phone: "919131264893", // Real Bhopal Shop Phone: 9131264893
   callingPhone: "9131264893",
   displayPhone: "+91 9131264893",
-  address: "Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal, Madhya Pradesh - 462022",
-  shortAddress: "Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022",
+  address: "Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal, Madhya Pradesh 462022, India",
+  shortAddress: "Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022",
   city: "Bhopal",
   state: "Madhya Pradesh",
   pincode: "462022",
@@ -19,6 +21,11 @@ export const STORE_CONFIG = {
   deliveryNote: "FREE Home Delivery on orders above ₹500 within 3 KM radius of shop (Ayodhya Nagar, Bhopal). Delivery charges apply beyond 3 KM. Pan-India courier delivery available anywhere in India!",
   panIndiaDelivery: "Available anywhere across India via courier",
   instagram: "@anumeetcutpiece",
+  // Policies & Terms
+  noRefundPolicy: "No Cash/Online Refund on cut piece fabrics once cut & dispatched",
+  exchangePolicy: "48-Hour Replacement & Exchange available for manufacturing defects or damaged items",
+  exchangeConditions: "Fabric must be uncut, unwashed, and in original condition",
+  continuousCutGuarantee: "Guaranteed seamless 5m & 10m uncut continuous pieces",
 };
 
 // Fabric Dummy SVG Placeholders with rich colors and textures

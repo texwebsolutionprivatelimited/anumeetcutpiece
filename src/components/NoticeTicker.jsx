@@ -24,7 +24,7 @@ export default function NoticeTicker() {
 
       <span className="inline-flex items-center gap-1 text-gray-700 text-xs sm:text-[13px] font-medium shrink-0">
         <MapPin className="w-3.5 h-3.5 text-[#801438] shrink-0" />
-        Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022
+        Hno-13, Sukh Sagar Phase-1, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022
       </span>
 
       <span className="text-[#c99738] font-bold shrink-0">•</span>
