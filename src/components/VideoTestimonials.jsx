@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, X, Star, CheckCircle2, Sparkles, ExternalLink, Eye } from 'lucide-react';
 import InstagramIcon from './InstagramIcon';
 import WhatsAppIcon from './WhatsAppIcon';
-import { VIDEO_TESTIMONIALS } from '../data/videoTestimonials';
+import { VIDEO_TESTIMONIALS, SHOW_VIDEO_TESTIMONIALS } from '../data/videoTestimonials';
 import { STORE_CONFIG } from '../data/products';
 import { createCustomFabricOrderWhatsAppLink } from '../utils/whatsapp';
 
@@ -14,6 +14,10 @@ function getInstagramId(url = '') {
 }
 
 export default function VideoTestimonials({ whatsappPhone }) {
+  // Hide completely from public until owner enables it
+  if (!SHOW_VIDEO_TESTIMONIALS) {
+    return null;
+  }
   const [activeVideo, setActiveVideo] = useState(null);
 
   // Lock background scroll when reel modal is open

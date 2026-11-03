@@ -3,7 +3,16 @@
  * CLIENT VIDEO TESTIMONIALS & INSTAGRAM REELS DATA
  * ============================================================================
  * 
- * HINDI GUIDE FOR OWNER (Yeh data aap kabhi bhi badal sakte hain):
+ * 🔴 PUBLIC DISPLAY SWITCH (ON / OFF):
+ * false = Website par public ko bilkul nahi dikhega (ABHI HIDE HAI)
+ * true  = Website par show hone lagega (Jab aap video link daal dein to true kar dein)
+ * ============================================================================
+ */
+export const SHOW_VIDEO_TESTIMONIALS = false;
+
+/**
+ * ============================================================================
+ * HINDI GUIDE FOR OWNER (Jab videos ready hon tab yahan link daalein):
  * 1. "reelUrl": Apni Instagram Reel ka link yahan paste karein.
  *    Jaise: "https://www.instagram.com/reel/C_XXXXXXXXX/"
  * 2. "posterImage": Video ka cover photo (public/ folder me daal kar uska path likhein,
