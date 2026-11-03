@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Index for Anumeet Cutpiece Bhopal
+Sitemap: https://anumeetcutpiece.com/sitemap.xml

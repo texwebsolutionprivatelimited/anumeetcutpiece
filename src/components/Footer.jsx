@@ -41,12 +41,21 @@ export default function Footer({ whatsappPhone }) {
               Anumeet Cutpiece — Your premier wholesale &amp; retail destination for premium cut piece fabrics in Bhopal. Feel the Fabric, Live the Fashion.
             </p>
 
-            {/* Address & Contact Details */}
-            <div className="space-y-2 text-[11px] sm:text-xs text-gray-800 bg-white/80 p-3 rounded-2xl border border-[#e8dfd1] max-w-sm">
+            {/* Address & Contact Details with Google Maps Directions */}
+            <address className="not-italic space-y-2 text-[11px] sm:text-xs text-gray-800 bg-white/80 p-3 rounded-2xl border border-[#e8dfd1] max-w-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#801438] shrink-0 mt-0.5" />
                 <span>
-                  <strong>Store Address:</strong> Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal, Madhya Pradesh - 462022
+                  <strong>Store Address:</strong>{' '}
+                  <a
+                    href="https://maps.google.com/?q=Sector+A+Kiran+Nagar+Ayodhya+Nagar+Bhopal+Madhya+Pradesh+462022"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#801438] hover:underline"
+                    title="View Anumeet Cutpiece on Google Maps"
+                  >
+                    Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal - 462022 ↗
+                  </a>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -58,7 +67,10 @@ export default function Footer({ whatsappPhone }) {
                   </a>
                 </span>
               </div>
-            </div>
+              <div className="pt-1.5 border-t border-gray-100 text-[10px] text-gray-600 leading-tight">
+                <span className="font-semibold text-[#801438]">Bhopal Local Coverage:</span> Ayodhya Nagar, Indrapuri, BHEL, Anand Nagar, MP Nagar, New Market &amp; Pan-India Courier.
+              </div>
+            </address>
 
             {/* Direct WhatsApp Callout: Full width on mobile, auto on desktop, zero drop shadow */}
             <div className="pt-1">
