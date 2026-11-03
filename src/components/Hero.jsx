@@ -42,7 +42,7 @@ export default function Hero({ whatsappPhone, onExploreClick }) {
           
           {/* Shop Image Card: Displayed FIRST on mobile (order-1), Right Column on desktop (order-2) */}
           <div className="min-[880px]:col-span-5 lg:col-span-5 flex flex-col justify-center my-auto py-1 order-1 min-[880px]:order-2 w-full min-w-0 overflow-hidden">
-            <div className="bg-white p-2.5 sm:p-3 rounded-2xl border-2 border-[#dfb15b]/65 shadow-xl overflow-hidden relative group max-w-[485px] lg:max-w-[510px] mx-auto w-full transition-all duration-300 hover:shadow-2xl">
+            <div className="bg-white p-2.5 sm:p-3 rounded-2xl border-2 border-[#dfb15b]/65 overflow-hidden relative group max-w-[485px] lg:max-w-[510px] mx-auto w-full transition-all duration-300">
               
               {/* Card Top Designer Header */}
               <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#e8dfd1] gap-1 min-w-0 overflow-hidden">

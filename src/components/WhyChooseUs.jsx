@@ -43,39 +43,46 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-us" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-10 sm:my-14 lg:my-16 overflow-hidden">
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
+    <section id="why-us" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-8 sm:my-14 lg:my-16 overflow-hidden">
+      {/* Centered Uniform Section Header */}
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10 overflow-hidden">
+        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-2.5 sm:mb-3 mx-auto">
           <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
           <span>Trust &amp; Purity</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
+        
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center leading-snug px-1">
           Why Choose Anumeet Cutpiece?
         </h2>
-        <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
+        
+        <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center px-1">
           The trusted fabric supplier for boutique designers, master tailors, and garment makers
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Feature Cards Grid: 1 col on 320/375/425px, 2 col on 768px, 3 col on 1024px+ */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5 lg:gap-6">
         {features.map((item, idx) => {
           const Icon = item.icon;
           return (
             <div
               key={idx}
-              className="bg-white p-5 sm:p-6 rounded-3xl border border-[#c99738]/25 shadow-xs hover:shadow-md transition-shadow group flex flex-col justify-between"
+              className="bg-white p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl border border-[#c99738]/30 hover:border-[#c99738] transition-all group flex flex-col justify-between"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#0b1b36] text-[#ffd978] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-xs">
-                  <Icon className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#0b1b36] text-[#ffd978] flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-105 transition-transform shrink-0">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#0b1b36]">
+                
+                <h3 className="text-base sm:text-lg font-bold text-[#0b1b36] leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-xs font-semibold text-[#801438] mt-0.5">
+                
+                <p className="text-[11px] sm:text-xs font-semibold text-[#801438] mt-0.5">
                   {item.highlight}
                 </p>
-                <p className="text-xs sm:text-sm text-gray-600 mt-2.5 leading-relaxed">
+                
+                <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-2.5 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

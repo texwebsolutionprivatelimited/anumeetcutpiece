@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CATEGORIES, REGULAR_PRODUCTS } from '../data/products';
 import ProductCard from './ProductCard';
-import { Search, Filter, SlidersHorizontal, Sparkles, X } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Sparkles, X, ChevronDown } from 'lucide-react';
 
 export default function ProductCatalog({
   cart = [],
@@ -50,15 +50,15 @@ export default function ProductCatalog({
   }, [selectedCategory, searchQuery, sortBy]);
 
   return (
-    <section id="catalog" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-10 sm:my-14 lg:my-16 overflow-hidden">
+    <section id="catalog" className="w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-8 sm:my-14 lg:my-16 overflow-hidden scroll-mt-24 sm:scroll-mt-32">
       
       {/* Title & Description */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-        <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs mx-auto">
-          <Sparkles className="w-3.5 h-3.5 fill-current text-[#c99738]" />
-          <span>Full Product Catalog ({REGULAR_PRODUCTS.length} Fabrics)</span>
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 px-1">
+        <div className="inline-flex items-center justify-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full mb-2.5 sm:mb-3 mx-auto whitespace-nowrap shadow-xs">
+          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-[#c99738] shrink-0" />
+          <span className="whitespace-nowrap">Full Product Catalog ({REGULAR_PRODUCTS.length} Fabrics)</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center">
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-[#0b1b36] tracking-tight text-center leading-snug">
           Explore Our Wholesale Fabrics
         </h2>
         <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-2 leading-relaxed max-w-2xl mx-auto text-center">
@@ -66,45 +66,23 @@ export default function ProductCatalog({
         </p>
       </div>
 
-      {/* Category Pills (Safe Horizontal Scroll with zero page blowout) */}
-      <div className="w-full overflow-x-auto pb-2.5 mb-5 sm:mb-6 scrollbar-none no-scrollbar scroll-smooth">
-        <div className="inline-flex items-center gap-1.5 sm:gap-2">
-          {CATEGORIES.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 sm:px-4.5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-semibold whitespace-nowrap transition-all duration-200 shrink-0 cursor-pointer ${
-                  isActive
-                    ? 'bg-[#0b1b36] text-[#ffd978] shadow-md scale-102 border border-[#c99738]'
-                    : 'bg-white text-gray-700 hover:bg-[#faf7f2] border border-gray-200 shadow-2xs'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Filter & Search Bar Row */}
-      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-xs mb-8 flex flex-col sm:flex-row items-center justify-between gap-3 min-w-0 overflow-hidden">
+      {/* Filter & Search Toolbar (Sleek Mobile & Desktop E-Commerce Controls) */}
+      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 mb-6 sm:mb-8 flex flex-col gap-2.5 sm:gap-3 w-full max-w-full min-w-0 shadow-2xs">
         
-        {/* Search Input */}
-        <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        {/* Row 1: Search Input */}
+        <div className="relative w-full">
+          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 shrink-0 pointer-events-none" />
           <input
             type="text"
             placeholder="Search fabric name or type..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#faf7f2] border border-gray-200 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm focus:outline-hidden focus:border-[#c99738]"
+            className="w-full bg-[#faf7f2] border border-gray-200 focus:border-[#c99738] rounded-xl pl-9.5 pr-8 py-2.5 text-xs sm:text-sm text-[#0b1b36] placeholder-gray-400 focus:outline-hidden transition-colors"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black p-0.5"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black p-1 cursor-pointer"
               aria-label="Clear search"
             >
               <X className="w-3.5 h-3.5" />
@@ -112,31 +90,77 @@ export default function ProductCatalog({
           )}
         </div>
 
-        {/* Counter & Sort By */}
-        <div className="flex items-center justify-between w-full sm:w-auto gap-2 min-w-0">
-          <span className="text-[11px] sm:text-xs text-gray-500 font-medium truncate">
-            Showing <strong className="text-[#0b1b36]">{filteredProducts.length}</strong> items
-          </span>
+        {/* Row 2: Dual Dropdowns & Counter */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
+          
+          {/* Dual Dropdowns: Exactly 50% / 50% equal columns on mobile, auto-inline on tablet/desktop */}
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3 w-full sm:w-auto">
+            
+            {/* Category Dropdown */}
+            <div className="relative w-full sm:w-auto">
+              <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-[#801438]">
+                <Filter className="w-3.5 h-3.5" />
+              </div>
+              <select
+                id="category-select"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-[#c99738]/80 hover:border-[#801438] text-[11px] sm:text-xs font-bold rounded-xl pl-7.5 pr-6.5 py-2 text-[#0b1b36] cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
+                aria-label="Filter fabrics by category"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat} {cat === 'All Fabrics' ? `(${REGULAR_PRODUCTS.length})` : ''}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-[#801438] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+            </div>
 
-          <div className="flex items-center gap-1.5 shrink-0">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-gray-500" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="bg-[#faf7f2] border border-gray-200 text-[11px] sm:text-xs rounded-xl px-2 py-1 focus:outline-hidden text-gray-700 font-medium cursor-pointer"
-            >
-              <option value="featured">Featured</option>
-              <option value="low-to-high">Price: Low to High</option>
-              <option value="high-to-low">Price: High to Low</option>
-            </select>
+            {/* Sort Dropdown */}
+            <div className="relative w-full sm:w-auto">
+              <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center text-gray-500">
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+              </div>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full sm:w-auto bg-[#faf7f2] hover:bg-white border border-gray-200 hover:border-gray-400 text-[11px] sm:text-xs font-semibold rounded-xl pl-7.5 pr-6.5 py-2 text-gray-700 cursor-pointer appearance-none transition-all focus:outline-hidden shadow-2xs truncate"
+                aria-label="Sort fabrics by price or relevance"
+              >
+                <option value="featured">Featured</option>
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-gray-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+            </div>
+
           </div>
+
+          {/* Reset Action (only shown when filtered or searched) */}
+          {(selectedCategory !== 'All Fabrics' || searchQuery) && (
+            <div className="flex items-center justify-end px-0.5 pt-0.5 sm:pt-0">
+              <button
+                onClick={() => {
+                  setSelectedCategory('All Fabrics');
+                  setSearchQuery('');
+                }}
+                className="text-[10.5px] sm:text-[11px] font-bold text-[#801438] hover:text-[#0b1b36] flex items-center gap-1 cursor-pointer transition-colors whitespace-nowrap underline decoration-[#c99738]"
+                title="Reset all filters"
+              >
+                <span>Reset filters</span>
+                <X className="w-3 h-3" />
+              </button>
+            </div>
+          )}
+
         </div>
 
       </div>
 
       {/* Products Grid: Responsive across 320px, 375px, 425px, 768px, 1024px, 1440px */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full max-w-full min-w-0">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}

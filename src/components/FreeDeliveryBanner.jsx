@@ -10,7 +10,7 @@ export default function FreeDeliveryBanner({ cartTotal, onOpenCart }) {
 
   return (
     <section id="delivery-offer" className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-8 sm:my-12 overflow-hidden">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#fffbf2] to-[#f8f0e3] p-3.5 sm:p-8 md:p-10 text-[#0b1b36] shadow-md border-2 border-[#dfb15b]/60">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#fffbf2] to-[#f8f0e3] p-3.5 sm:p-8 md:p-10 text-[#0b1b36] border-2 border-[#dfb15b]/60">
         
         {/* Subtle Decorative Golden Corner Accents */}
         <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-[#c99738]/10 blur-2xl pointer-events-none" />
@@ -20,7 +20,7 @@ export default function FreeDeliveryBanner({ cartTotal, onOpenCart }) {
           
           {/* Left Column: Offer Details */}
           <div className="min-[880px]:col-span-7 space-y-3 text-center min-[880px]:text-left min-w-0 overflow-hidden">
-            <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3 shadow-xs">
+            <div className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#801438] bg-[#801438]/10 px-3.5 py-1.5 rounded-full mb-3">
               <Gift className="w-3.5 h-3.5 fill-current text-[#ffd978]" />
               <span>Special Delivery Offer</span>
             </div>
@@ -35,11 +35,11 @@ export default function FreeDeliveryBanner({ cartTotal, onOpenCart }) {
 
             {/* Feature Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 min-w-0">
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-800 bg-white/80 border border-[#e8dfd1] px-2.5 py-1.5 rounded-xl shadow-xs min-w-0">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-800 bg-white/80 border border-[#e8dfd1] px-2.5 py-1.5 rounded-xl min-w-0">
                 <MapPin className="w-4 h-4 text-[#8a5d0e] shrink-0" />
                 <span className="truncate"><strong>Free Within 3 KM:</strong> Above ₹500</span>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-800 bg-white/80 border border-[#e8dfd1] px-2.5 py-1.5 rounded-xl shadow-xs min-w-0">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-800 bg-white/80 border border-[#e8dfd1] px-2.5 py-1.5 rounded-xl min-w-0">
                 <Truck className="w-4 h-4 text-[#25d366] shrink-0" />
                 <span className="truncate"><strong>Pan-India Courier:</strong> Fast Delivery</span>
               </div>
@@ -50,7 +50,7 @@ export default function FreeDeliveryBanner({ cartTotal, onOpenCart }) {
           </div>
 
           {/* Right Column: Dynamic Cart Progress Bar */}
-          <div className="min-[880px]:col-span-5 bg-white p-4 min-[880px]:p-5 rounded-2xl border border-[#c99738]/40 shadow-sm">
+          <div className="min-[880px]:col-span-5 bg-white p-4 min-[880px]:p-5 rounded-2xl border border-[#c99738]/40">
             <div className="flex items-center justify-between text-xs sm:text-sm font-bold mb-2">
               <span className="text-[#801438]">Free Delivery Meter</span>
               <span className="text-[#0b1b36] font-mono">₹{cartTotal} / ₹{threshold}</span>

@@ -21,15 +21,25 @@
     box-sizing: border-box;
   }
 
-  html, body, #root {
+  html {
+    overflow-x: clip;
+    scroll-behavior: smooth;
+  }
+
+  body {
     background-color: #faf7f2;
     color: #212121;
     font-family: 'Inter', 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-    width: 100% !important;
+    overflow-x: clip;
+    width: 100%;
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
   }
 
   /* Flipkart-style Clean Sans Typography across all Headings & Titles */
@@ -110,7 +120,7 @@ body,
   background: transparent !important;
 }
 
-/* Infinite Marquee Animation for Testimonials */
+/* Infinite Marquee Animation for Testimonials & Announcement Bar */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -128,5 +138,18 @@ body,
 }
 
 .animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Fast Marquee for Top Notice Ticker */
+.animate-ticker-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-marquee:hover,
+.animate-ticker-marquee:active {
   animation-play-state: paused;
 }

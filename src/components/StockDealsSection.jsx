@@ -84,21 +84,21 @@ export default function StockDealsSection({
             <div
               key={item.id}
               onClick={() => onQuickView && onQuickView(productPayload)}
-              className="bg-white rounded-3xl overflow-hidden border border-[#c99738]/30 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group relative cursor-pointer"
+              className="bg-white rounded-3xl overflow-hidden border border-[#c99738]/30 hover:border-[#c99738] transition-all duration-300 flex flex-col group relative cursor-pointer"
             >
               {/* Badge Tag */}
-              <div className="absolute top-2.5 left-2.5 z-10 bg-[#801438] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+              <div className="absolute top-2.5 left-2.5 z-10 bg-[#801438] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
                 <Sparkles className="w-2.5 h-2.5 text-[#ffd978] fill-current" />
                 <span>{item.badge}</span>
               </div>
 
               {/* Discount Percentage Pill */}
-              <div className="absolute top-2.5 right-2.5 z-10 bg-[#25d366] text-white text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-xs">
+              <div className="absolute top-2.5 right-2.5 z-10 bg-[#25d366] text-white text-[10px] font-black px-1.5 py-0.5 rounded-full">
                 {discountPercent}% OFF
               </div>
 
-              {/* Fabric Visual Preview */}
-              <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full max-h-52 sm:max-h-none overflow-hidden bg-[#faf7f2]">
+              {/* Fabric Visual Preview — Natural 4:3 matches 1024x768 graphic without cropping */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#faf7f2]">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -263,7 +263,7 @@ export default function StockDealsSection({
                         }
                       }}
                       className="flex items-center justify-center gap-1 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold py-1.5 sm:py-2 px-1 rounded-xl text-[10px] sm:text-xs shadow-xs transition-all cursor-pointer whitespace-nowrap"
-                      title="Direct Buy with WhatsApp & delivery details"
+                      title="Order directly on WhatsApp"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                       <span className="whitespace-nowrap">Buy Now</span>

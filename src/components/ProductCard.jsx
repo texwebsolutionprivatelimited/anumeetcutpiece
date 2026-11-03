@@ -36,12 +36,12 @@ export default function ProductCard({
   return (
     <div
       onClick={() => onQuickView && onQuickView(product)}
-      className="bg-white rounded-3xl overflow-hidden border border-[#c99738]/25 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group relative cursor-pointer"
+      className="bg-white rounded-3xl overflow-hidden border border-[#c99738]/30 hover:border-[#c99738] transition-all duration-300 flex flex-col group relative cursor-pointer w-full max-w-full min-w-0"
     >
       
       {/* Top Floating Badge */}
       {product.badge && (
-        <div className="absolute top-3 left-3 z-10 bg-[#801438] text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
+        <div className="absolute top-2.5 left-2.5 z-10 bg-[#801438] text-white text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1">
           <Sparkles className="w-3 h-3 text-[#ffd978] fill-current" />
           <span>{product.badge}</span>
         </div>
@@ -49,13 +49,13 @@ export default function ProductCard({
 
       {/* Discount Tag */}
       {discountPercent > 0 && (
-        <div className="absolute top-3 right-3 z-10 bg-[#25d366] text-white text-[10px] sm:text-[11px] font-black px-2 py-0.5 rounded-full shadow-xs">
+        <div className="absolute top-2.5 right-2.5 z-10 bg-[#25d366] text-white text-[10px] sm:text-[11px] font-black px-2 py-0.5 rounded-full">
           {discountPercent}% OFF
         </div>
       )}
 
-      {/* Image Preview with Hover Quick View Button */}
-      <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full max-h-52 sm:max-h-none overflow-hidden bg-[#faf7f2]">
+      {/* Image Preview with Hover Quick View Button — 1:1 Aspect Ratio matches 1024x1024 graphics with zero cropping */}
+      <div className="relative aspect-square w-full overflow-hidden bg-[#faf7f2]">
         <img
           src={product.image}
           alt={product.name}
@@ -69,7 +69,7 @@ export default function ProductCard({
               e.stopPropagation();
               onQuickView && onQuickView(product);
             }}
-            className="bg-white hover:bg-[#faf7f2] text-[#0b1b36] font-bold px-3 py-1.5 rounded-full text-xs flex items-center gap-1 shadow-md transform translate-y-2 group-hover:translate-y-0 transition-all border border-[#c99738]/40 cursor-pointer"
+            className="bg-white hover:bg-[#faf7f2] text-[#0b1b36] font-bold px-3 py-1.5 rounded-full text-xs flex items-center gap-1 transform translate-y-2 group-hover:translate-y-0 transition-all border border-[#c99738]/40 cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5 text-[#8a5d0e]" />
             <span>Quick View</span>
@@ -77,14 +77,14 @@ export default function ProductCard({
         </div>
 
         {/* Bottom Cutpiece Length Pill */}
-        <div className="absolute bottom-2 left-2.5 bg-white/95 backdrop-blur-xs text-[#0b1b36] border border-[#e8dfd1] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-xs">
+        <div className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs text-[#0b1b36] border border-[#e8dfd1] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
           <Tag className="w-3 h-3 text-[#c99738]" />
           <span>Cut: {product.unit}</span>
         </div>
 
         {/* In-Cart Count Pill Badge on Image */}
         {quantityInCart > 0 && (
-          <div className="absolute bottom-2 right-2.5 bg-[#0b1b36] text-[#ffd978] border border-[#c99738] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-md whitespace-nowrap">
+          <div className="absolute bottom-2.5 right-2.5 bg-[#0b1b36] text-[#ffd978] border border-[#c99738] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1 whitespace-nowrap">
             <ShoppingBag className="w-3 h-3 text-[#ffd978] shrink-0" />
             <span className="whitespace-nowrap">{quantityInCart} in Cart</span>
           </div>
@@ -150,7 +150,7 @@ export default function ProductCard({
                   e.stopPropagation();
                   handleAddToCart(e);
                 }}
-                className="flex items-center justify-center gap-1.5 bg-[#faf7f2] hover:bg-[#c99738]/20 border border-[#c99738]/80 text-[#0b1b36] font-semibold py-2 px-1.5 rounded-xl text-[11px] sm:text-xs transition-colors active:scale-95 cursor-pointer shadow-xs whitespace-nowrap"
+                className="flex items-center justify-center gap-1 sm:gap-1.5 bg-[#faf7f2] hover:bg-[#c99738]/20 border border-[#c99738]/80 text-[#0b1b36] font-semibold py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs transition-colors active:scale-95 cursor-pointer whitespace-nowrap"
                 title="Add to shopping cart"
               >
                 <ShoppingBag className="w-3.5 h-3.5 text-[#8a5d0e] shrink-0" />
@@ -159,7 +159,7 @@ export default function ProductCard({
             ) : (
               <div
                 onClick={(e) => e.stopPropagation()}
-                className="flex items-center justify-between bg-[#0b1b36] text-white rounded-xl border border-[#c99738] p-0.5 shadow-xs"
+                className="flex items-center justify-between bg-[#0b1b36] text-white rounded-xl border border-[#c99738] p-0.5"
               >
                 <button
                   type="button"
@@ -169,26 +169,18 @@ export default function ProductCard({
                       onUpdateQuantity(product.id, product.unit, quantityInCart - 1);
                     }
                   }}
-                  className="w-6.5 h-7 sm:w-7.5 sm:h-7.5 shrink-0 flex items-center justify-center hover:bg-white/20 active:scale-90 text-[#ffd978] rounded-lg transition-all cursor-pointer"
+                  className="w-6 h-7 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center hover:bg-white/20 active:scale-90 text-[#ffd978] rounded-lg transition-all cursor-pointer"
                   title="Decrease quantity"
                   aria-label="Decrease quantity"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </button>
 
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToCart(e);
-                  }}
-                  className="flex-1 min-w-0 flex items-center justify-center px-0.5 py-1 hover:bg-white/10 rounded text-center active:scale-95 transition-all cursor-pointer"
-                  title="Click to add 1 more"
-                >
+                <div className="flex-1 min-w-0 flex items-center justify-center px-0.5 py-1 text-center">
                   <span className="font-bold text-[10px] sm:text-[11px] text-white whitespace-nowrap tracking-tight">
                     {quantityInCart} in Cart
                   </span>
-                </button>
+                </div>
 
                 <button
                   type="button"
@@ -196,11 +188,11 @@ export default function ProductCard({
                     e.stopPropagation();
                     handleAddToCart(e);
                   }}
-                  className="w-6.5 h-7 sm:w-7.5 sm:h-7.5 shrink-0 flex items-center justify-center bg-[#c99738] hover:bg-[#dfb15b] active:scale-90 text-[#0b1b36] rounded-lg transition-all font-bold cursor-pointer"
+                  className="w-6 h-7 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center bg-[#c99738] hover:bg-[#dfb15b] active:scale-90 text-[#0b1b36] rounded-lg transition-all font-bold cursor-pointer"
                   title="Increase quantity"
                   aria-label="Increase quantity"
                 >
-                  <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[2.5]" />
                 </button>
               </div>
             )}
@@ -225,7 +217,7 @@ export default function ProductCard({
                   });
                 }
               }}
-              className="flex items-center justify-center gap-1.5 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold py-2 px-1.5 rounded-xl text-[11px] sm:text-xs shadow-xs transition-all cursor-pointer whitespace-nowrap"
+              className="flex items-center justify-center gap-1 sm:gap-1.5 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs transition-all cursor-pointer whitespace-nowrap"
               title="Order this product directly on WhatsApp"
             >
               <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />

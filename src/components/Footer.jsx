@@ -6,16 +6,16 @@ import { createGeneralInquiryWhatsAppLink, cleanPhoneNumber } from '../utils/wha
 
 export default function Footer({ whatsappPhone }) {
   return (
-    <footer className="bg-[#f7f2e8] text-[#1a2538] border-t-2 border-[#c99738]/40 pt-12 pb-24 sm:pb-12 overflow-hidden">
+    <footer className="bg-[#f7f2e8] text-[#1a2538] border-t-2 border-[#c99738]/40 pt-7 sm:pt-10 pb-14 sm:pb-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-[#e5d8c3]">
+        {/* Main Footer Grid: 1 col on mobile, 2 col on tablet (768px), 12 col on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 pb-8 sm:pb-10 border-b border-[#e5d8c3]">
           
           {/* Brand Col */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shrink-0 shadow-sm">
+          <div className="md:col-span-1 lg:col-span-5 space-y-3.5 sm:space-y-4">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shrink-0">
                 <img
                   src="/logo.png"
                   alt="Anumeet Cutpiece Logo"
@@ -23,15 +23,15 @@ export default function Footer({ whatsappPhone }) {
                 />
               </div>
               <div>
-                <div className="flex items-baseline gap-1.5">
-                  <h3 className="text-xl font-black tracking-tight text-[#0b1b36]">
+                <div className="flex items-baseline gap-1 sm:gap-1.5">
+                  <h3 className="text-lg sm:text-xl font-black tracking-tight text-[#0b1b36]">
                     ANUMEET
                   </h3>
-                  <span className="text-[#801438] text-base font-bold">
+                  <span className="text-[#801438] text-sm sm:text-base font-bold">
                     Cutpiece
                   </span>
                 </div>
-                <p className="text-[10px] sm:text-xs text-[#8a5d0e] tracking-widest uppercase font-bold">
+                <p className="text-[9.5px] sm:text-xs text-[#8a5d0e] tracking-widest uppercase font-bold">
                   Quality Fabric, Endless Possibilities
                 </p>
               </div>
@@ -42,7 +42,7 @@ export default function Footer({ whatsappPhone }) {
             </p>
 
             {/* Address & Contact Details */}
-            <div className="space-y-2 text-xs text-gray-800 bg-white/70 p-3 rounded-2xl border border-[#e8dfd1] max-w-sm">
+            <div className="space-y-2 text-[11px] sm:text-xs text-gray-800 bg-white/80 p-3 rounded-2xl border border-[#e8dfd1] max-w-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#801438] shrink-0 mt-0.5" />
                 <span>
@@ -60,20 +60,22 @@ export default function Footer({ whatsappPhone }) {
               </div>
             </div>
 
-            {/* Direct WhatsApp Callout */}
-            <a
-              href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba59] text-white font-bold px-4 py-2.5 rounded-full text-xs shadow-md transition-all active:scale-95 whitespace-nowrap cursor-pointer"
-            >
-              <WhatsAppIcon className="w-4 h-4 shrink-0" />
-              <span className="whitespace-nowrap">WhatsApp Booking: +{cleanPhoneNumber(whatsappPhone)}</span>
-            </a>
+            {/* Direct WhatsApp Callout: Full width on mobile, auto on desktop, zero drop shadow */}
+            <div className="pt-1">
+              <a
+                href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold px-4 py-2.5 rounded-xl sm:rounded-full text-xs transition-all whitespace-nowrap cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                <span className="whitespace-nowrap">WhatsApp Booking: +{cleanPhoneNumber(whatsappPhone)}</span>
+              </a>
+            </div>
           </div>
 
           {/* Quick Categories */}
-          <div className="lg:col-span-3 space-y-3">
+          <div className="md:col-span-1 lg:col-span-3 space-y-3">
             <h4 className="font-bold text-xs uppercase tracking-wider text-[#801438]">
               Popular Fabrics
             </h4>
@@ -87,24 +89,24 @@ export default function Footer({ whatsappPhone }) {
           </div>
 
           {/* Delivery & Policies */}
-          <div className="lg:col-span-4 space-y-3">
+          <div className="md:col-span-2 lg:col-span-4 space-y-3">
             <h4 className="font-bold text-xs uppercase tracking-wider text-[#801438]">
               Delivery &amp; Shop Policy
             </h4>
-            <div className="space-y-2 text-xs text-gray-700">
-              <div className="flex items-start gap-2 bg-white/60 p-2 rounded-xl border border-[#e8dfd1]">
+            <div className="space-y-2 text-[11px] sm:text-xs text-gray-700">
+              <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
                 <Truck className="w-4 h-4 text-[#801438] shrink-0 mt-0.5" />
                 <span>
                   <strong className="text-[#0b1b36]">Free Delivery (Within 3 KM):</strong> Free home delivery on orders of ₹500+ within 3 KM radius of our shop. Charges apply beyond 3 KM.
                 </span>
               </div>
-              <div className="flex items-start gap-2 bg-white/60 p-2 rounded-xl border border-[#e8dfd1]">
+              <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
                 <MapPin className="w-4 h-4 text-[#0d7a38] shrink-0 mt-0.5" />
                 <span>
                   <strong className="text-[#0b1b36]">Pan-India Delivery:</strong> Reliable tracked courier delivery anywhere across all of India!
                 </span>
               </div>
-              <div className="flex items-start gap-2 bg-white/60 p-2 rounded-xl border border-[#e8dfd1]">
+              <div className="flex items-start gap-2 bg-white/70 p-2.5 rounded-xl border border-[#e8dfd1]">
                 <ShieldCheck className="w-4 h-4 text-[#c99738] shrink-0 mt-0.5" />
                 <span>
                   <strong className="text-[#0b1b36]">Continuous Cuts:</strong> Guaranteed seamless 5m &amp; 10m uncut continuous fabrics.
@@ -116,7 +118,7 @@ export default function Footer({ whatsappPhone }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600 font-medium">
+        <div className="pt-3.5 sm:pt-5 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-3 text-[11px] sm:text-xs text-gray-600 font-medium text-center sm:text-left">
           <p>© {new Date().getFullYear()} Anumeet Cutpiece. All rights reserved.</p>
           <p className="flex items-center gap-1">
             <span>Crafted with</span>

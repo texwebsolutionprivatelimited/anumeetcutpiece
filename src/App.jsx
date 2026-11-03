@@ -15,7 +15,7 @@ import CartDrawer from './components/CartDrawer';
 import WhatsAppSettingsModal from './components/WhatsAppSettingsModal';
 import StickyMobileBar from './components/StickyMobileBar';
 import WhatsAppIcon from './components/WhatsAppIcon';
-import { createGeneralInquiryWhatsAppLink } from './utils/whatsapp';
+import { createGeneralInquiryWhatsAppLink, createSingleProductWhatsAppLink } from './utils/whatsapp';
 
 export default function App() {
   // Cart state persisted to localStorage
@@ -57,13 +57,14 @@ export default function App() {
     }, 3200);
   };
 
-  // Direct Buy Flow (1. Selected Item -> 2. User Details -> 3. Price -> WhatsApp -> Thank You)
+  // Direct Buy Flow: 1-Click direct redirect to WhatsApp (Bypasses Cart completely)
   const handleDirectBuy = (product) => {
     const item = {
       id: product.id,
       name: product.name,
       subTitle: product.subTitle,
       price: product.price || product.sellPrice,
+      sellPrice: product.sellPrice || product.price,
       mrp: product.mrp,
       unit: product.unit || product.length || '5 mtr',
       length: product.length || product.unit || '5 mtr',
@@ -71,8 +72,21 @@ export default function App() {
       category: product.category,
       quantity: product.quantity || 1,
     };
-    setDirectBuyItem(item);
-    setIsCartOpen(true);
+
+    const waLink = createSingleProductWhatsAppLink(
+      item,
+      whatsappPhone,
+      item.length,
+      item.price
+    );
+
+    showToast(`Redirecting to WhatsApp for ${item.name}...`);
+    
+    // Direct redirect to WhatsApp
+    const win = window.open(waLink, '_blank', 'noopener,noreferrer');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = waLink;
+    }
   };
 
   // Save cart changes
@@ -169,21 +183,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf7f2] text-[#1a2538] font-sans pb-16 sm:pb-0 overflow-x-hidden w-full">
+    <div className="min-h-screen flex flex-col bg-[#faf7f2] text-[#1a2538] font-sans w-full overflow-x-clip">
       
-      {/* 1. Top Offer Ticker: ₹500 Free Delivery Rule */}
-      <NoticeTicker />
+      {/* Sticky Top Header Container: Ticker + Navbar stay locked at top across mobile, tablet, and laptop on page scroll */}
+      <div className="sticky top-0 z-40 w-full shadow-xs">
+        {/* 1. Top Offer Ticker: ₹500 Free Delivery Rule */}
+        <NoticeTicker />
 
-      {/* 2. Responsive Header Navigation with User's Logo */}
-      <Navbar
-        cartCount={totalCartCount}
-        onOpenCart={() => setIsCartOpen(true)}
-        whatsappPhone={whatsappPhone}
-        onSelectCategory={(cat) => {
-          setSelectedCategory(cat);
-          scrollToCatalog();
-        }}
-      />
+        {/* 2. Responsive Header Navigation with User's Logo */}
+        <Navbar
+          cartCount={totalCartCount}
+          onOpenCart={() => setIsCartOpen(true)}
+          whatsappPhone={whatsappPhone}
+          onSelectCategory={(cat) => {
+            setSelectedCategory(cat);
+            scrollToCatalog();
+          }}
+        />
+      </div>
 
       {/* 3. Luxury Light Hero Section with Interactive Fabric Deal Spotlight */}
       <Hero
