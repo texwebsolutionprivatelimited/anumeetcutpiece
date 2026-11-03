@@ -20,7 +20,8 @@ export const STORE_CONFIG = {
   freeDeliveryRadius: "Within 3 KM Radius of Shop",
   deliveryNote: "FREE Home Delivery on orders above ₹500 within 3 KM radius of shop (Ayodhya Nagar, Bhopal). Delivery charges apply beyond 3 KM. Pan-India courier delivery available anywhere in India!",
   panIndiaDelivery: "Available anywhere across India via courier",
-  instagram: "@anumeetcutpiece",
+  instagram: "@anumeetcutpiece.in",
+  instagramUrl: "https://www.instagram.com/anumeetcutpiece.in/",
   // Policies & Terms
   noRefundPolicy: "No Cash/Online Refund on cut piece fabrics once cut & dispatched",
   exchangePolicy: "48-Hour Replacement & Exchange available for manufacturing defects or damaged items",

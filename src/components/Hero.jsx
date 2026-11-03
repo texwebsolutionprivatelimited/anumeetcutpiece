@@ -11,6 +11,7 @@ import {
   Check,
 } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
+import InstagramIcon from './InstagramIcon';
 import { createGeneralInquiryWhatsAppLink } from '../utils/whatsapp';
 
 export default function Hero({ whatsappPhone, onExploreClick }) {

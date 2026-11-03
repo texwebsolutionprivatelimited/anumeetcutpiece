@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, MapPin, Truck, ShieldCheck, Heart, Sparkles, RefreshCw } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
+import InstagramIcon from './InstagramIcon';
 import { STORE_CONFIG } from '../data/products';
 import { createGeneralInquiryWhatsAppLink, cleanPhoneNumber } from '../utils/whatsapp';
 
@@ -72,16 +73,27 @@ export default function Footer({ whatsappPhone, onOpenPolicy }) {
               </div>
             </address>
 
-            {/* Direct WhatsApp Callout: Full width on mobile, auto on desktop, zero drop shadow */}
-            <div className="pt-1">
+            {/* Direct Social & WhatsApp Action Buttons */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
               <a
                 href={createGeneralInquiryWhatsAppLink(whatsappPhone)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold px-4 py-2.5 rounded-xl sm:rounded-full text-xs transition-all whitespace-nowrap cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#20ba59] active:scale-95 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all whitespace-nowrap cursor-pointer shadow-xs"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">WhatsApp Booking: +{cleanPhoneNumber(whatsappPhone)}</span>
+                <span className="whitespace-nowrap">WhatsApp: +{cleanPhoneNumber(whatsappPhone)}</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/anumeetcutpiece.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 active:scale-95 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all whitespace-nowrap cursor-pointer shadow-xs"
+                title="Follow Anumeet Cutpiece on Instagram"
+              >
+                <InstagramIcon className="w-4 h-4 shrink-0" />
+                <span className="whitespace-nowrap">Instagram: @anumeetcutpiece.in</span>
               </a>
             </div>
           </div>

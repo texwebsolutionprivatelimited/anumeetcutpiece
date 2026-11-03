@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, ChevronRight, Phone, Sparkles } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
+import InstagramIcon from './InstagramIcon';
 import { cleanPhoneNumber, createGeneralInquiryWhatsAppLink } from '../utils/whatsapp';
 
 export default function Navbar({
@@ -219,14 +220,26 @@ export default function Navbar({
 
               {/* Store location & Call link */}
               <div className="flex items-center justify-between text-[11px] text-gray-500 px-1 pt-0.5">
-                <span className="truncate">📍 Hno-13, Sukh Sagar Phase-1, Ayodhya Nagar, Bhopal</span>
-                <a
-                  href={`tel:+${cleanPhoneNumber(whatsappPhone)}`}
-                  className="inline-flex items-center gap-1 text-[#801438] font-bold hover:underline shrink-0"
-                >
-                  <Phone className="w-3 h-3" />
-                  <span>Call Us</span>
-                </a>
+                <span className="truncate">📍 Sukh Sagar Phase-1, Ayodhya Nagar, Bhopal</span>
+                <div className="flex items-center gap-2.5 shrink-0">
+                  <a
+                    href="https://www.instagram.com/anumeetcutpiece.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[#e1306c] font-bold hover:underline"
+                    title="Follow @anumeetcutpiece.in on Instagram"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5" />
+                    <span>Instagram</span>
+                  </a>
+                  <a
+                    href={`tel:+${cleanPhoneNumber(whatsappPhone)}`}
+                    className="inline-flex items-center gap-1 text-[#801438] font-bold hover:underline"
+                  >
+                    <Phone className="w-3 h-3" />
+                    <span>Call</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
