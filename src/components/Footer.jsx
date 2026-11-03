@@ -17,7 +17,7 @@ export default function Footer({ whatsappPhone }) {
             <div className="flex items-center gap-2.5 sm:gap-3">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shrink-0">
                 <img
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Anumeet Cutpiece Logo"
                   className="w-full h-full object-cover rounded-full bg-white"
                 />

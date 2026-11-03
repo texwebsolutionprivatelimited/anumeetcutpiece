@@ -40,12 +40,12 @@ export default function Navbar({
         <a href="#" className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0 min-w-0">
           <div className="relative w-8 h-8 sm:w-10 sm:h-10 min-[880px]:w-11 min-[880px]:h-11 xl:w-13 xl:h-13 rounded-full p-0.5 bg-gradient-to-tr from-[#c99738] via-[#ffd978] to-[#801438] shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Anumeet Cutpiece Logo"
               className="w-full h-full object-cover rounded-full bg-white"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/logo.png';
+                e.target.src = '/logo.webp';
               }}
             />
           </div>

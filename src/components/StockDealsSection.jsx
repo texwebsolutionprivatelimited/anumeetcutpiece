@@ -103,6 +103,8 @@ export default function StockDealsSection({
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-xs">

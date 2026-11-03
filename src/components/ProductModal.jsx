@@ -80,6 +80,7 @@ export default function ProductModal({
             src={product.image}
             alt={product.name}
             className="w-full aspect-square max-h-52 sm:max-h-72 md:max-h-[440px] object-contain rounded-2xl shadow-sm bg-white"
+            decoding="async"
           />
           {product.badge && (
             <div className="absolute top-3.5 left-3.5 bg-[#801438] text-white text-[10.5px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-md">

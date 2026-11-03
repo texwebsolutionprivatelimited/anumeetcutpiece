@@ -15,7 +15,7 @@ import { createGeneralInquiryWhatsAppLink } from '../utils/whatsapp';
 
 export default function Hero({ whatsappPhone, onExploreClick }) {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const shopImage = '/shop-front.jpg';
+  const shopImage = '/shop-front.webp';
 
   // Lock background scroll when shop photo lightbox is open
   useEffect(() => {
@@ -68,6 +68,8 @@ export default function Hero({ whatsappPhone, onExploreClick }) {
                   src={shopImage}
                   alt="Anumeet Cutpiece Storefront - Sector A, Kiran Nagar, Ayodhya Nagar, Bhopal"
                   className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-102"
+                  fetchPriority="high"
+                  decoding="async"
                 />
 
                 {/* Floating Corner Badges on the image (Hidden on mobile so the shop banner photo is completely clear) */}
