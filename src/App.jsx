@@ -8,6 +8,7 @@ import FreeDeliveryBanner from './components/FreeDeliveryBanner';
 import StockDealsSection from './components/StockDealsSection';
 import ProductCatalog from './components/ProductCatalog';
 import WhyChooseUs from './components/WhyChooseUs';
+import VideoTestimonials from './components/VideoTestimonials';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
@@ -332,7 +333,10 @@ export default function App() {
       {/* 7. Why Choose Us Section */}
       <WhyChooseUs />
 
-      {/* 8. Customer Testimonials & Reviews */}
+      {/* 8. Client Video Testimonials & Instagram Reels */}
+      <VideoTestimonials whatsappPhone={whatsappPhone} />
+
+      {/* 9. Customer Testimonials & Reviews */}
       <Reviews />
 
       {/* 9. Comprehensive Footer */}

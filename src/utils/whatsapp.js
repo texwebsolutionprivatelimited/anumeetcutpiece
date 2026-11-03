@@ -75,3 +75,11 @@ export const createGeneralInquiryWhatsAppLink = (phone) => {
 I would like to inquire about your wholesale cut piece fabrics and catalog.`;
   return `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
 };
+
+export const createCustomFabricOrderWhatsAppLink = (phone, fabricName = 'Fabric') => {
+  const targetPhone = cleanPhoneNumber(phone);
+  const message = `*Hello Anumeet Cutpiece!*
+I saw your customer review video for *${fabricName}*.
+Is this fabric currently available in stock? Please share photos and price details.`;
+  return `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
+};
